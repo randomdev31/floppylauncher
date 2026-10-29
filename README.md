@@ -1,4 +1,4 @@
-# Battly Launcher
+# Battly Launcher / Floppy
 
 [![Node.js CI](https://github.com/1ly4s0/battlylauncher/actions/workflows/build.yml/badge.svg)](https://github.com/1ly4s0/battlylauncher/actions/workflows/build.yml)
 
@@ -13,7 +13,7 @@ Battly es un launcher de Minecraft para usuarios *premium* y *no-premium*, dise�
 * **Interfaz moderna y fácil de usar**, pensada para ofrecer la mejor experiencia incluso a usuarios nuevos.
 * **Opciones de rendimiento** para ajustar parámetros como RAM, optimización y ajustes del sistema.
 * **Multiplataforma**: Disponible para **Windows**, **macOS** y todas las distribuciones Linux (Debian, Ubuntu, Arch, etc.).
-* **Sistema seguro**, sin trackers ocultos ni recopilación invasiva de datos.
+* **Sistema REALMENTE seguro**, sin trackers ocultos ni recopilación invasiva de datos.
 
 ## 💡 Sugerencias y Feedback
 
@@ -21,7 +21,7 @@ Si tienes ideas, mejoras o encuentras un error, puedes dejar tus sugerencias:
 
 * En los comentarios de este repositorio
 * En el servidor oficial de Discord
-* O enviando un correo a **[sugerencias@battlylauncher.com](mailto:sugerencias@battlylauncher.com)**
+* O enviando un correo a **[sugerencias@battlylauncher.com](mailto:sugerencias@battlylauncher.com) (O al creador del fork: [g4mvblcr8@mozmail.com](mailto:g4mvblcr8@mozmail.com)**
 
 Tu opinión ayuda a mejorar Battly cada día.
 
