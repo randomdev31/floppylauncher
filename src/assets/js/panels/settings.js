@@ -1,6 +1,6 @@
 /**
  * @author TECNO BROS
- 
+
  */
 "use strict";
 
@@ -108,11 +108,6 @@ class Settings {
         });
       });
 
-    document
-      .getElementById("obtener-socketid")
-      .addEventListener("click", (e) => {
-        ipcRenderer.send("obtenerSocketID");
-      });
 
     document.getElementById("language-selector").value = await getValue("lang");
     document.getElementById("language-selector-btn").addEventListener("click", async () => {
@@ -736,27 +731,18 @@ class Settings {
       uuid: "1234",
       launcher: {
         close: launcherDatabase?.launcher?.close || "close-launcher",
-        closeMusic: launcherDatabase?.launcher?.closeMusic || "close-music",
       },
     };
 
     await setValue('launcher', settingsLauncher);
 
     let closeLauncher = document.getElementById("launcher-close");
-    let closeMusic = document.getElementById("music-close");
     let openLauncher = document.getElementById("launcher-open");
-    let openMusic = document.getElementById("music-open");
 
     if (settingsLauncher.launcher.close === "close-launcher") {
       closeLauncher.checked = true;
     } else if (settingsLauncher.launcher.close === "open-launcher") {
       openLauncher.checked = true;
-    }
-
-    if (settingsLauncher.launcher.closeMusic === "close-music") {
-      closeMusic.checked = true;
-    } else if (settingsLauncher.launcher.closeMusic === "open-music") {
-      openMusic.checked = true;
     }
 
     let autoSyncCheckbox = document.getElementById("auto-sync-enabled");
@@ -785,36 +771,6 @@ class Settings {
 
       await this.database.update(settingsLauncher, "launcher");
       await setValue('launcher', settingsLauncher);
-    });
-
-    closeMusic.addEventListener("change", async () => {
-      if (closeMusic.checked) {
-        openMusic.checked = false;
-      }
-      if (!closeMusic.checked) closeMusic.checked = true;
-      settingsLauncher.launcher.closeMusic = "close-music";
-
-      await this.database.update(settingsLauncher, "launcher");
-      await setValue('launcher', settingsLauncher);
-
-      if (typeof ipcRenderer !== 'undefined') {
-        ipcRenderer.send('music-panel-config-changed', 'close-music');
-      }
-    });
-
-    openMusic.addEventListener("change", async () => {
-      if (openMusic.checked) {
-        closeMusic.checked = false;
-      }
-      if (!openMusic.checked) openMusic.checked = true;
-      settingsLauncher.launcher.closeMusic = "open-music";
-
-      await this.database.update(settingsLauncher, "launcher");
-      await setValue('launcher', settingsLauncher);
-
-      if (typeof ipcRenderer !== 'undefined') {
-        ipcRenderer.send('music-panel-config-changed', 'open-music');
-      }
     });
 
     if (autoSyncCheckbox) {
@@ -2375,13 +2331,6 @@ class Settings {
         }
       }
 
-      const btnMusic = document.getElementById("music-btn");
-      if (btnMusic && !btnMusic.dataset.listenerApplied) {
-        btnMusic.addEventListener("click", () => {
-          if (typeof changePanel === "function") changePanel("music");
-        });
-        btnMusic.dataset.listenerApplied = "1";
-      }
     }
 
     async function InitTheme() {

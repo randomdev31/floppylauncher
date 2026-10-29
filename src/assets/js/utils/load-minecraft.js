@@ -1,8 +1,6 @@
 const { ipcRenderer } = require("electron");
 const fs = require("fs");
 const path = require("path");
-const AnalyticsHelper = require('./assets/js/utils/analyticsHelper.js');
-import * as NBT from "../../../../node_modules/nbtify/dist/index.js";
 import { LoadAPI } from "../utils/loadAPI.js";
 const { loadMinecraftJavaCore } = require('./assets/js/utils/library-loader.js');
 import { consoleOutput } from "./logger.js";
@@ -26,25 +24,6 @@ class LoadMinecraft {
     const BattlyConfig = await new LoadAPI().GetConfig();
     const launcherSettings = (await db.get("1234", "launcher")).value;
     let account = await db.getSelectedAccount();
-
-    // Track Minecraft start
-    const minecraftStartTime = Date.now();
-    AnalyticsHelper.trackMinecraftStart(
-      options.loader.enable ? `${options.version}-${options.loader.type}` : options.version,
-      options.loader.enable ? options.loader.type : null
-    ).catch(err => console.error('Error tracking Minecraft start:', err));
-
-    async function UpdateStatus(username, status, details) {
-      console.log(`🧩 ${username} > ${status} > ${details}`);
-
-      if (account.type === "battly") {
-        ipcRenderer.send("updateStatus", {
-          status: status,
-          details: details,
-          token: account.token,
-        });
-      }
-    }
 
     let version_real;
     if (options.loader.enable) {
@@ -286,7 +265,6 @@ class LoadMinecraft {
     let seMostroExtrayendo_core = false;
     let lastProgreso = -1;
     let progresoShown = false;
-    let iniciando = false;
     let inicio = false;
     let estimatedTime = `- ${langs.calculating_time}...`;
 
@@ -467,65 +445,6 @@ class LoadMinecraft {
       if (e.includes("Launching with arguments"))
         progressText1.innerHTML = `${langs.starting_minecraft}...`;
 
-      if (iniciando == false) {
-        iniciando = true;
-
-        let serversDat = `${dataDirectory}/.battly/servers.dat`;
-
-        if (fs.existsSync(serversDat)) {
-          try {
-            const serversDatFile = fs.readFileSync(serversDat);
-            const serversDatData = await NBT.read(serversDatFile);
-
-            const servers = BattlyConfig.promoted_servers;
-            const existingIPs = new Set(serversDatData.data.servers.map(server => server.ip));
-
-            const serversArray = servers.reduce((accumulator, server) => {
-              if (!existingIPs.has(server.ip) && server.enabled) {
-                accumulator.push(server);
-              } else if (existingIPs.has(server.ip) && !server.enabled) {
-
-                serversDatData.data.servers = serversDatData.data.servers.filter(existingServer => existingServer.ip !== server.ip);
-              } else if (existingIPs.has(server.ip) && server.enabled) {
-
-                serversDatData.data.servers = serversDatData.data.servers.filter(existingServer => existingServer.ip !== server.ip);
-                accumulator.push(server);
-              }
-              return accumulator;
-            }, []);
-
-            serversDatData.data.servers = serversArray.concat(serversDatData.data.servers);
-            console.log(serversDatData);
-            const editedServersDat = await NBT.write(serversDatData);
-            fs.writeFileSync(serversDat, editedServersDat);
-          } catch (error) {
-            console.error("Error al procesar el archivo NBT");
-            console.error(error);
-          }
-        } else {
-          try {
-            let servers = BattlyConfig.promoted_servers;
-
-            let serversArray = [];
-
-            for (let i = 0; i < servers.length; i++) {
-              const newServer = {
-                name: servers[i].name,
-                ip: servers[i].ip,
-                icon: servers[i].icon,
-              };
-              serversArray.push(newServer);
-            }
-
-            const newData = { servers: serversArray };
-            const editedServersDat = await NBT.write(newData);
-            fs.writeFileSync(serversDat, editedServersDat);
-          } catch (error) {
-            console.error("Error al crear el nuevo archivo NBT:", error);
-          }
-        }
-      }
-
       if (e.includes("Incompatible mods found!")) {
         modalDiv1.remove();
         return ShowCrashReport(
@@ -618,22 +537,7 @@ class LoadMinecraft {
           } else {
             typeOfVersion = "";
           }
-          ipcRenderer.send(
-            "new-status-discord-jugando",
-            `${langs.playing_in} ${version_real
-              .replace("-forge", "")
-              .replace("-fabric", "")
-              .replace("-quilt", "")} ${typeOfVersion}`
-          );
 
-          UpdateStatus(
-            account.name,
-            "ausente",
-            `${langs.playing_in} ${version_real
-              .replace("-forge", "")
-              .replace("-fabric", "")
-              .replace("-quilt", "")} ${typeOfVersion}`
-          );
 
           modalDiv1.remove();
           inicio = true;
@@ -654,27 +558,9 @@ class LoadMinecraft {
       if (launcherSettings.launcher.close === "close-launcher")
         ipcRenderer.send("main-window-show");
 
-      // Track Minecraft close
-      const playTime = Date.now() - minecraftStartTime;
-      const versionPlayed = options.loader.enable
-        ? `${options.version}-${options.loader.type}`
-        : options.version;
-
-      AnalyticsHelper.trackMinecraftClose(versionPlayed, playTime)
-        .catch(err => console.error('Error tracking Minecraft close:', err));
-
-      ipcRenderer.send("updateStatus", {
-        status: "online",
-        details: langs.in_the_menu,
-        username: account.name,
-      });
-
-      UpdateStatus(account.name, "online", langs.in_the_menu);
-
       new logger("Launcher", "#3e8ed0");
       console.log("🔧 Minecraft cerrado");
 
-      ipcRenderer.send("delete-and-new-status-discord");
     });
 
     Launcher.on('error', err => {

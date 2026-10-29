@@ -8,7 +8,6 @@ import { Alert } from "./utils/alert.js";
 
 import { createPerformanceTimer } from "./utils/launcherLogger.js";
 
-require('./assets/js/libs/errorReporter');
 
 import {
   config,
@@ -68,14 +67,10 @@ class Launcher {
     const panelsTimer = createPerformanceTimer("Panels Loading");
     const panelNames = [
       "login",
-      "music",
       "home",
       "settings",
       "mods",
       "news",
-      "friends",
-      "chat",
-      "servers",
       "mybattly",
     ];
 
@@ -393,4 +388,3 @@ class Launcher {
 }
 
 new Launcher().init();
-

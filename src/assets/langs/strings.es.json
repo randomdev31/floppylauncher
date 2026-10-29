@@ -99,12 +99,8 @@
     "checkingConnection": "Comprobando conexión a internet",
     "noConnection": "No se ha podido conectar a internet.<br>Entrando en modo offline",
     "startingBattly": "Iniciando Battly",
-    "checkingUpdates": "Comprobando actualizaciones",
-    "errorCheckingUpdates": "Error al buscar las actualizaciones. El servidor no responde. Inténtalo de nuevo más tarde.",
     "errorConnectingServer": "Error al conectar al servidor de Battly",
     "gettingActualVersion": "Obteniendo versión actual",
-    "downloadingUpdate": "Descargando actualización",
-    "updateAvailable": "¡Actualización disponible!",
     "updateDownloaded": "Actualización descargada",
     "updateCancelled": "Actualización cancelada",
     "updateCompleted": "Actualización descargada. Ahora se te abrirá el instalador de Battly",
@@ -118,8 +114,6 @@
     "home": "Inicio",
     "instances": "Instancias",
     "mods": "Mods",
-    "music": "Música",
-    "friends": "Amigos",
     "settings": "Ajustes",
     "news": "Novedades",
     "myBattly": "Mi Battly",
@@ -131,9 +125,6 @@
     "downloadBtn": "Descargar",
     "playBtn": "Jugar",
     "modsBtn": "Mods",
-    "musicBtn": "Música",
-    "friendsBtn": "Amigos",
-    "serversBtn": "Servidores",
     "settingsBtn": "Ajustes",
     "newsBtn": "Novedades"
   },
@@ -143,8 +134,6 @@
     "folder": "Abre la carpeta de Battly",
     "discord": "Únete al servidor de Discord",
     "mods": "Descarga tus mods favoritos desde Battly",
-    "music": "Escucha tu música favorita cuando quieras",
-    "friends": "Mira que están jugando tus amigos para unirte a ellos",
     "instances": "Separa tus mods y juega tus modpacks favoritos",
     "download": "Descarga versiones de Minecraft",
     "play": "Juega las versiones descargadas",
@@ -169,9 +158,6 @@
     "usersOnline": "usuarios online",
     "playingNow": "Reproduciendo ahora",
     "playingNowBody": "Nada reproduciéndose",
-    "connectedFriends": "Amigos conectados",
-    "noFriendsOnline": "No tienes amigos en línea",
-    "loadingFriends": "Cargando amigos...",
     "seeMore": "Ver más",
     "saveWorlds": "Guardar mundos",
     "preview": "Preview",
@@ -179,16 +165,10 @@
     "inTheMenu": "en el menú",
     "passwordNotSet": "No has establecido contraseña",
     "logsSavedCorrectly": "Logs guardados correctamente",
-    "titleAccessLogs": "Acceso a logs",
-    "textAccessLogs": "¿Quieres dar acceso a tus logs?",
     "requester": "Solicitante:",
     "reason": "Razón",
-    "textAccessLogsTwo": "¿Estás seguro de que quieres compartir tus logs?",
     "allow": "Permitir",
     "deny": "Denegar",
-    "accessLogsDenied": "Acceso a logs denegado",
-    "accessLogsDeniedText": "Has denegado el acceso a los logs",
-    "yourUniqueIdIs": "Tu ID único es",
     "dontShareIt": "no lo compartas",
     "copy": "Copiar",
     "idCopiedCorrectly": "ID copiado correctamente",
@@ -478,181 +458,6 @@
     "chooseMinecraftVersion": "Elige una versión de Minecraft",
     "chooseModVersion": "Elige una versión del mod"
   },
-  "music": {
-    "updatingTitle": "Actualizando Battly Music",
-    "downloadingLatestVersion": "Descargando la versión de Battly Music más reciente...",
-    "downloadingBattlyMusic": "Descargando Battly Music...",
-    "verifyingInstallation": "Verificando instalación...",
-    "updateCompleted": "¡Actualización completada!",
-    "ready": "¡Listo!",
-    "errorUpdating": "Error actualizando yt-dlp:",
-    "unknownVersion": "(desconocida)",
-    "importSpotifyPlaylist": "Importar Playlist de Spotify",
-    "enterSpotifyPlaylistUrl": "Ingresa la URL de la playlist de Spotify",
-    "whatToDoWithSongs": "¿Qué deseas hacer con las canciones?",
-    "importError": "Error al Importar",
-    "importYoutubePlaylist": "Importar Playlist de YouTube",
-    "enterYoutubePlaylistUrl": "Ingresa la URL de la playlist de YouTube",
-    "unknown": "Desconocido",
-    "untitled": "Sin título",
-    "noDescription": "Sin descripción",
-    "name": "Nombre",
-    "description": "Descripción",
-    "play": "Reproducir",
-    "addToQueue": "Añadir a la cola",
-    "addToPlaylist": "Añadir a playlist (guardada)",
-    "defaultCoverPath": "path/to/default/cover.jpg",
-    "battlyMusic": "Battly Music",
-    "home": "Inicio",
-    "yourLibrary": "Tu Biblioteca",
-    "currentQueue": "Cola actual",
-    "importPlaylistSidebar": "Importar Playlist",
-    "backToHome": "Volver al inicio",
-    "searchPlaceholder": "¿Qué quieres escuchar hoy?",
-    "welcomeMessage": "Bienvenid@ al nuevo diseño de Battly Music. Explora y disfruta de tu música favorita sin límites.",
-    "recommendationsForYou": "Recomendaciones para ti",
-    "songsYouLike": "Canciones que te gustan",
-    "yourPlaylists": "Tus Playlists",
-    "songs": "Canciones",
-    "playbackQueue": "Cola de reproducción",
-    "savePlaylistButton": "Guardar playlist",
-    "youDontHaveSongsInYourPlaylist": "No tienes canciones en tu lista de reproducción",
-    "youDontHaveSongsInPlaylist1": "No tienes canciones en la lista de reproducción.",
-    "youDontHaveSongsInPlaylist2": "¡Busca una o carga una playlist!",
-    "addSongsToYourPlaylist": "Añade una buscándola en el buscador de aquí abajo",
-    "savePlaylist": "Guardar",
-    "savePlaylistText": "Guardar playlist",
-    "savedPlaylists": "Playlists guardadas",
-    "playlistName": "Título de la playlist",
-    "youNeedToSetAPlaylistName": "Debes ingresar un nombre para la playlist",
-    "alreadyHaveAPlaylistWithThisName": "Ya tienes una playlist con este nombre",
-    "playlistSavedCorrectly": "Playlist guardada correctamente",
-    "playlistSaved": "¡Playlist guardada!",
-    "playlistSavedSuccessfully": "La playlist se ha guardado correctamente",
-    "playlistDescription": "Descripción (opcional)",
-    "playlistNameRequired": "El nombre es requerido",
-    "errorSavingPlaylist": "Error al guardar la playlist",
-    "targetPlaylist": "Playlist de destino",
-    "createPlaylist": "Crear nueva playlist",
-    "addToPlaylistSaved": "Añadir a playlist",
-    "selectAPlaylist": "Selecciona una playlist",
-    "alreadyExists": "Ya existe",
-    "songAlreadyInPlaylist": "La canción ya estaba en esa playlist",
-    "songAddedToPlaylist": "Canción añadida a la playlist",
-    "couldNotAddSong": "No se pudo añadir",
-    "couldNotCreatePlaylist": "No se pudo crear la playlist",
-    "playlistCreated": "¡Playlist creada!",
-    "songAddedToNewPlaylist": "Se añadió la canción a tu nueva playlist",
-    "welcomeToTheNewPlaylistsSystem": "Bienvenid@ al nuevo panel de playlists de Battly, aquí podrás gestionar tus playlists que habrás guardado en Battly Music.",
-    "gettingSongs": "Obteniendo canciones",
-    "getting": "Obteniendo",
-    "songsLoadedPlaying": "¡Música cargada!<br>Reproduciendo",
-    "playlistDeletedSuccessfully": "Playlist eliminada correctamente",
-    "playlistDeletedCorrectly": "Playlist eliminada correctamente",
-    "added": "Añadido",
-    "finded": "Encontrados",
-    "notFounded": "No encontrados",
-    "playingNow": "Reproduciendo ahora",
-    "yourPlaylist": "Tu playlist",
-    "noSong": "Ninguna canción",
-    "songName": "Nombre de la canción",
-    "playlists": "Playlists",
-    "searchSong": "Buscar",
-    "volume": "Volumen",
-    "importPlaylist": "Importar playlist",
-    "minimizeMusic": "Ocultar el panel de música después de iniciar Minecraft",
-    "keepMusicOpened": "Mostrar el panel de música después de iniciar Minecraft",
-    "musicSettingsInformation": "Música"
-  },
-  "friends": {
-    "welcomeBattlySocial": "👋 Bienvenido/a al nuevo panel de amigos de Battly. Aquí podrás ver a todos tus amigos, añadirlos, ver qué están jugando y sus estadísticas",
-    "friendsListText": "Lista de amigos",
-    "no_friends_online": "No tienes amigos en línea",
-    "addFriend": "Añadir amigo",
-    "addFriendDesc": "Añade a alguien por su nombre de usuario",
-    "usernamePlaceholder": "Nombre de usuario",
-    "emptySearchText": "No hay resultados",
-    "showRequests": "Ver solicitudes",
-    "startingVersionCanTake": "Iniciando versión... Puede tardar un poco...",
-    "youDontHaveAnyFriendRequests": "No tienes solicitudes de amistad",
-    "friendRequests": "Solicitudes de amistad",
-    "requestAccepted": "Solicitud aceptada",
-    "requestRejected": "Solicitud rechazada",
-    "nowFriendsWith": "Ahora eres amigo de {username}",
-    "loadingFriends": "Cargando amigos",
-    "errorLoadingFriends": "Error al obtener la lista de amigos. Comprueba tu conexión a internet y vuelve a intentarlo más tarde.",
-    "inTheMainMenu": "En el menú de inicio",
-    "addFriendText": "Añadir amigo",
-    "youCannotAddYourself": "No puedes añadirte a ti mismo como amigo.",
-    "youAlreadyHaveThisFriend": "Ya tienes a este usuario como amigo.",
-    "requestSentTo": "Solicitud enviada a",
-    "correctly": "correctamente",
-    "youDontHaveFriends1": "No tienes amigos...😔 ¡Añade a alguien!",
-    "youDontHaveFriends2": "No tienes amigos, pídele a alguien su nombre :D",
-    "youDontHaveFriends3": "No tienes amigos... Parecido a la realidad",
-    "youDontHaveFriends4": "Que vacío está esto por aquí... Añade a alguien a ver si se anima",
-    "youDontHaveFriends5": "No tienes amigos... ¿Quieres ser mi amigo?",
-    "youDontHaveFriends6": "¿Porqué entras aquí si no tienes amigos?",
-    "youDontHaveFriends7": "Vamos a llenar esto, dale a añadir amigos y añade a alguien",
-    "youDontHaveFriends8": "Vaya, no tienes amigos... prueba a enviar una solicitud a alguien",
-    "seeFriendsBtn": "Ver amigos",
-    "errorSendingRequest": "Error al enviar la solicitud",
-    "unknownError": "Error desconocido",
-    "errorSearchingUsers": "Error al buscar usuarios",
-    "errorLoadingRequests": "Error al cargar las solicitudes",
-    "unknown": "Desconocido",
-    "social": "Social",
-    "chat": "Chat",
-    "requests": "Solicitudes",
-    "back": "Volver",
-    "filterByStatus": "Filtrar por estado",
-    "filterAll": "Todos",
-    "filterOnline": "En línea",
-    "filterPlaying": "Jugando",
-    "filterOffline": "Offline",
-    "filterFavorites": "Favoritos",
-    "sortBy": "Ordenar por",
-    "sortByStatus": "Por estado",
-    "sortByName": "Alfabético",
-    "sortByRecent": "Más recientes",
-    "noFriendsTitle": "No tienes amigos todavía",
-    "noFriendsDesc": "¡Añade a alguien para empezar a jugar juntos!",
-    "noResults": "No se encontraron amigos",
-    "noResultsDesc": "Intenta ajustar los filtros o busca otro nombre",
-    "viewProfile": "Ver perfil",
-    "sendMessage": "Enviar mensaje",
-    "feature_not_available_for_microsoft_accounts": "Esta función no está disponible para cuentas de Microsoft",
-    "joinGame": "Unirse al juego",
-    "addToFavorites": "Añadir a favoritos",
-    "removeFromFavorites": "Quitar de favoritos",
-    "addNote": "Añadir nota",
-    "removeFriend": "Eliminar amigo",
-    "blockUser": "Bloquear usuario",
-    "searchFriends": "Buscar amigos...",
-    "clearSearch": "Limpiar búsqueda",
-    "gridView": "Vista cuadrícula",
-    "listView": "Vista lista",
-    "friendProfile": "Perfil de amigo",
-    "lastSeen": "Última vez visto",
-    "currentlyPlaying": "Jugando actualmente",
-    "addNoteTitle": "Añadir nota",
-    "addNotePrompt": "Escribe una nota para este amigo:",
-    "noteSaved": "Nota guardada",
-    "removeFriendConfirm": "¿Estás seguro de que quieres eliminar a este amigo?",
-    "friendRemoved": "Amigo eliminado",
-    "blockUserConfirm": "¿Estás seguro de que quieres bloquear a este usuario?",
-    "userBlocked": "Usuario bloqueado",
-    "errorLoadingProfile": "Error al cargar el perfil",
-    "receivedRequests": "Recibidas",
-    "sentRequests": "Enviadas",
-    "noReceivedRequests": "No tienes solicitudes recibidas",
-    "noSentRequests": "No tienes solicitudes enviadas",
-    "searchUsers": "Buscar usuarios...",
-    "sendRequest": "Enviar solicitud",
-    "searching": "Buscando...",
-    "noUsersFound": "No se encontraron usuarios",
-    "typeToSearch": "Escribe para buscar usuarios"
-  },
   "game": {
     "playingIn": "Jugando en",
     "inTheMenu": "En el menú de inicio",
@@ -806,7 +611,6 @@
     "launchboostSettingsInformationText": "Haz que Battly inicie más rápido que nunca gracias a ser miembro de Battly+",
     "changingLanguageText": "Battly se reiniciará en unos segundos para aplicar el idioma seleccionado.",
     "battlyLogsText": "Registros de Battly:",
-    "getSocketid": "Obtener ID única",
     "battlyTheme": "Personalizar Battly",
     "battlyThemeText": "¡Bienvenido/a al nuevo panel de personalización de Battly! Aquí podrás personalizar Battly a tu gusto, cambiando el tema, las imágenes de fondo y mucho más. ¡Esperamos que te guste!",
     "changeThemeText": "Ajustar el tema",
@@ -814,7 +618,6 @@
     "bottomBarText": "Color de la barra inferior",
     "bottomBarOpacity": "Transparencia de la barra inferior",
     "backgroundLoadingScreenColorText": "Color de la pantalla de carga",
-    "startingMusic": "Sonido de inicio",
     "resizeImageText": "Recortar imagen",
     "setBackgroundText": "Establecer fondo",
     "customizeBackground": "Personalizar fondo",
@@ -921,7 +724,6 @@
     "unpublished": "Despublicado ✔",
     "themeUnpublished": "Tu tema ha sido despublicado",
     "errorUnpublishing": "Error al despublicar",
-
     "sendForReview": "Enviar a revisión",
     "inReviewStatus": "En revisión",
     "animatedBackground": "Fondo animado",
@@ -941,7 +743,6 @@
       "battle": "Battle",
       "modern": "Modern"
     },
-
     "youArePremiumBackground": "Ya que eres premium, ahora podrás elegir si subir una imagen estática o animada para tu fondo de Battly.",
     "selectATypeBackground": "Elige qué fondo quieres establecer",
     "staticBackgroundText": "Fondo estático (imagen)",
@@ -1048,9 +849,6 @@
     "whatToDoWhenOpeningMinecraft": "Qué hacer al abrir Minecraft",
     "hideBattlyAfterStarting": "Ocultar Battly después de iniciar",
     "keepBattlyOpen": "Mantener Battly abierto",
-    "music": "Música",
-    "hideMusicPanel": "Ocultar panel de música",
-    "showMusicPanel": "Mostrar panel de música",
     "autoSync": "Sincronización automática",
     "syncWorldsAutomatically": "Sincronizar mundos automáticamente al cerrar el juego",
     "autoSyncDescription": "Cuando está habilitado, tus mundos se respaldarán automáticamente en Google Drive cada vez que cierres Minecraft. Battly permanecerá en segundo plano hasta que se complete la copia y te notificará cuando termine.",
@@ -1058,7 +856,6 @@
     "clickSound": "Sonido de clic",
     "activate": "Activar",
     "deactivate": "Desactivar",
-    "getUniqueId": "Obtener ID única",
     "addAccount": "Añadir cuenta",
     "javaConfigDescription": "En esta sección puedes configurar la versión de Java que se usará para iniciar tu juego.",
     "javaPath": "Ruta de Java",
@@ -1089,14 +886,8 @@
     "copiedLogs": "¡Logs copiados!",
     "clearLogs": "Limpiar logs",
     "logsCleared": "¡Logs limpiados!",
-    "titleAccessLogs": "Acceso a tus logs",
-    "textAccessLogs": "Se ha solicitado acceso a tus logs de Battly, ¿Deseas permitirlo?",
     "requester": "Solicitante",
     "reason": "Razón",
-    "textAccessLogsTwo": "Si no permites el acceso, no se podrá obtener los logs.Asegúrate que el solicitante sea de confianza.",
-    "accessLogsDenied": "Se ha denegado el acceso a los logs.",
-    "accessLogsDeniedText": "Si crees que estás siendo atacado, contacta con el equipo de soporte de Battly urgentemente.",
-    "yourUniqueIdIs": "Tu ID única de Battly es:",
     "dontShareIt": "Usa esta ID para poder recibir mejor ayuda con tu problema.",
     "idCopiedCorrectly": "Se ha copiado la ID correctamente.",
     "logsSavedCorrectly": "Registros guardados correctamente"
@@ -1184,357 +975,20 @@
     "playlistUrl": "URL de la playlist",
     "playlistImportedCorrectly": "Playlist importada correctamente"
   },
-  "news": {
-    "header": {
-      "title": "Novedades"
-    },
-    "navigation": {
-      "previous": "Anterior"
-    },
-    "author": {
-      "role": "Fundador de Battly"
-    },
-    "buttons": {
-      "next": "Siguiente"
-    },
-    "slide0": {
-      "title": "¡Battly 3.0 ya está aquí!",
-      "subtitle": "La actualización más grande hasta ahora",
-      "intro": "Hemos trabajado durante meses para traerte la mejor experiencia de juego. Descubre todas las novedades que hemos preparado para ti.",
-      "highlight1": "Battly Servers",
-      "highlight2": "Google Drive Sync",
-      "highlight3": "Battly Music 2.0",
-      "highlight4": "Nuevo sistema de mods",
-      "highlight5": "Rendimiento mejorado 100%",
-      "highlight6": "Y mucho más..."
-    },
-    "slide1": {
-      "title": "Battly Servers",
-      "subtitle": "Crea servidores locales con dominio",
-      "description": "Crea tus propios servidores de Minecraft con dominio personalizado, totalmente gratis y sin límites.",
-      "feature1": {
-        "title": "Dominio personalizado",
-        "desc": "Elige tu propio dominio .battly"
-      },
-      "feature2": {
-        "title": "100% Gratis",
-        "desc": "Sin costes ocultos ni suscripciones"
-      },
-      "feature3": {
-        "title": "Fácil configuración",
-        "desc": "Crea tu servidor en segundos"
-      },
-      "feature4": {
-        "title": "Seguro y privado",
-        "desc": "Tú controlas quién entra"
-      }
-    },
-    "slide2": {
-      "title": "Battly x Google Drive",
-      "subtitle": "Sincroniza tus mundos en la nube",
-      "description": "Sincroniza automáticamente tus mundos con Google Drive y accede a ellos desde cualquier dispositivo.",
-      "feature1": {
-        "title": "Sincronización automática",
-        "desc": "Tus mundos se guardan automáticamente en la nube"
-      },
-      "feature2": {
-        "title": "Multi-dispositivo",
-        "desc": "Juega en diferentes PCs sin perder tu progreso"
-      },
-      "feature3": {
-        "title": "Recuperación de mundos",
-        "desc": "Restaura tus mundos si algo sale mal"
-      },
-      "feature4": {
-        "title": "Espacio ilimitado",
-        "desc": "Usa tu propio Google Drive sin límites"
-      }
-    },
-    "slide3": {
-      "title": "Battly Music 2.0",
-      "subtitle": "Completamente rediseñado",
-      "description": "Una experiencia musical renovada con nuevas funciones, mejor interfaz y sincronización en la nube.",
-      "feature1": {
-        "title": "Nuevo diseño",
-        "desc": "Interfaz moderna y fluida"
-      },
-      "feature2": {
-        "title": "Más configuraciones",
-        "desc": "Edita playlists, reordena canciones y más"
-      },
-      "feature3": {
-        "title": "Sync en la nube",
-        "desc": "Tus playlists en todos tus dispositivos"
-      },
-      "feature4": {
-        "title": "Recomendaciones IA",
-        "desc": "Battly analiza tus gustos y recomienda música"
-      },
-      "feature5": {
-        "title": "Canciones favoritas",
-        "desc": "Dale like a tus canciones preferidas"
-      },
-      "feature6": {
-        "title": "Importar playlists",
-        "desc": "Importa playlists públicas con su URL"
-      }
-    },
-    "slide4": {
-      "title": "Battly Mods",
-      "subtitle": "Sistema completamente renovado",
-      "description": "Un nuevo sistema de mods con búsqueda avanzada, filtros de loaders y modpacks integrados.",
-      "category1": {
-        "title": "🎨 Nuevo diseño",
-        "desc": "Interfaz completamente renovada y más intuitiva"
-      },
-      "category2": {
-        "title": "🔍 Búsqueda avanzada",
-        "desc": "Filtra por mods, resourcepacks, shaders, datapacks y más"
-      },
-      "category3": {
-        "title": "⚙️ Filtros de loaders",
-        "desc": "Busca por Forge, Fabric, Quilt, NeoForge, etc."
-      },
-      "category4": {
-        "title": "📦 Modpacks integrados",
-        "desc": "Busca e instala modpacks directamente desde Battly"
-      },
-      "info": "Los modpacks de CurseForge se deben descargar externamente por restricciones de licencia."
-    },
-    "slide5": {
-      "title": "Instancias Mejoradas",
-      "subtitle": "Más opciones y mejor estabilidad",
-      "badge": {
-        "new": "Nuevo",
-        "fixed": "Arreglado"
-      },
-      "improvement1": {
-        "title": "Personaliza la vista",
-        "desc": "Ahora puedes elegir cómo se visualizan tus instancias"
-      },
-      "improvement2": {
-        "title": "Skins funcionando",
-        "desc": "Las skins vuelven a mostrarse correctamente en las instancias"
-      },
-      "improvement3": {
-        "title": "ModPacks estables",
-        "desc": "Solucionados problemas con modpacks como RLCraft"
-      }
-    },
-    "slide6": {
-      "title": "Nuevo Panel de Descargas",
-      "subtitle": "Diseño renovado y más funcional",
-      "feature1": {
-        "title": "Diseño completamente nuevo",
-        "desc": "Interfaz moderna y elegante para descargar y jugar"
-      },
-      "feature2": {
-        "title": "Versiones específicas de loaders",
-        "desc": "Elige la versión exacta de Forge, Fabric, etc."
-      },
-      "feature3": {
-        "title": "Versiones recientes",
-        "desc": "Accede rápidamente a las últimas 3 versiones jugadas"
-      }
-    },
-    "slide7": {
-      "title": "Mejoras Generales",
-      "subtitle": "Rendimiento y estabilidad",
-      "improvement1": {
-        "title": "🎓 Tutorial interactivo",
-        "desc": "Tutorial completo la primera vez que abres Battly"
-      },
-      "improvement2": {
-        "title": "🎨 Skins automáticas",
-        "desc": "Battly elimina la carpeta de skins automáticamente"
-      },
-      "improvement3": {
-        "title": "⚙️ ModLoaders mejorados",
-        "desc": "Forge y NeoForge ahora dan menos problemas"
-      },
-      "improvement4": {
-        "title": "📦 ModPacks 77% más rápidos",
-        "desc": "Instalación optimizada de modpacks"
-      },
-      "improvement5": {
-        "title": "📴 Modo offline mejorado",
-        "desc": "El sistema offline ya no debería fallar"
-      },
-      "improvement6": {
-        "title": "☕ Java optimizado",
-        "desc": "Mejoras en versiones externas relacionadas a Java"
-      },
-      "improvement7": {
-        "title": "🌍 Idiomas optimizados",
-        "desc": "Sistema de idiomas más rápido y eficiente"
-      },
-      "improvement8": {
-        "title": "⚡ Inicio 100% más rápido",
-        "desc": "Battly ahora inicia el doble de rápido"
-      },
-      "improvement9": {
-        "title": "🔐 Seguridad mejorada",
-        "desc": "Mejor protección para cuentas de Battly"
-      }
-    },
-    "slide8": {
-      "title": "¡Y mucho más!",
-      "subtitle": "Battly 3.0 está aquí para revolucionar tu experiencia",
-      "stat1": "Nuevas características",
-      "stat2": "Bugs corregidos",
-      "stat3": "Más rápido",
-      "message": "Hemos trabajado durante más de un año para traerte la mejor actualización hasta ahora. Esperamos que disfrutes Battly 3.0.",
-      "button": "¡Terminar!"
-    },
-    "finish": {
-      "title": "¡Bienvenido a Battly 3.0!",
-      "text": "Has completado el recorrido. ¡Disfruta de todas las nuevas características!"
-    },
-    "welcome": {
-      "title": "¡Bienvenido a Battly!",
-      "text": "Para empezar, necesitas iniciar sesión con tu cuenta."
-    },
-    "importantFile": {
-      "content": "🎉 ¡Bienvenido a Battly 3.0!\n\n✨ Gracias por usar Battly Launcher.\n\n📝 Notas importantes:\n• Este launcher está en constante desarrollo\n• Si encuentras algún error, repórtalo en nuestro Discord\n• Visita https://battlylauncher.com para más información\n\n🎮 ¡Disfruta jugando!\n\n- Equipo de Battly"
-    },
-    "legacy": {
-      "user": {
-        "name": "1ly4s0",
-        "title": "Fundador de Battly"
-      },
-      "button": {
-        "next": "Siguiente",
-        "finish": "Terminar"
-      },
-      "card4": {
-        "title": "Ahora puedes desactivar y reactivar mods",
-        "subtitle": "Más mejoras en la gestión de instancias",
-        "content": "Otra de las funciones más pedidas por la comunidad, era la de poder desactivar mods sin tener que eliminarlos. Ahora es posible."
-      },
-      "card5": {
-        "title": "Nuevo sistema de actualizaciones",
-        "subtitle": "Un método rápido, fácil y automático",
-        "how": "¿Cómo funciona?",
-        "content": "Para actualizar Battly normalmente necesitabas descargar el instalador de nuevo. Ahora las actualizaciones se descargan automáticamente."
-      },
-      "card6": {
-        "title": "Battly Music",
-        "subtitle": "Ya vuelven a estar disponibles",
-        "what": "¿Qué ha pasado?",
-        "content": "YouTube está constantemente cambiando el funcionamiento de su API. Hemos ajustado el sistema para seguir funcionando correctamente."
-      },
-      "card7": {
-        "title": "Y finalmente... Poder ver las noticias de Minecraft",
-        "subtitle": "Opción que ya existía en la antigua versión de Battly",
-        "how": "¿Cómo funciona?",
-        "content": "A los verdaderos entusiastas de Minecraft y sus novedades, sé que les gusta estar actualizados. Ahora pueden ver las noticias de Minecraft directamente en Battly."
-      }
-    }
-  },
-  "servers": {
-    "title": "Battly Servers",
-    "welcomeBack": "¡Bienvenido de nuevo, {user}! Conectando con tu servidor {server}...",
-    "createServer": "Vamos a crear tu servidor",
-    "serverDomain": "Dominio del servidor",
-    "enterDomain": "Introduce el dominio",
-    "ipWill": "La IP será:",
-    "domainNotAllowed": "¡Dominio no permitido! No puede contener palabras como api, server, oficial, battly.",
-    "minecraftVersion": "Versión de Minecraft",
-    "serverRegion": "Región del servidor",
-    "checkLatency": "Comprobar de nuevo",
-    "calculatingLatency": "Calculando latencia…",
-    "cancel": "Cancelar",
-    "createButton": "Crear servidor",
-    "connecting": "Conectando al servidor",
-    "connectionError": "Error al conectar.",
-    "creatingServer": "Creando servidor",
-    "configuringServer": "Configurando servidor",
-    "general": "General",
-    "resources": "Recursos",
-    "players": "Jugadores",
-    "options": "Opciones",
-    "modloaders": "Cargadores de mods",
-    "archivos": "Archivos",
-    "logs": "Logs",
-    "backHome": "Volver al inicio",
-    "shareServer": "Compartir servidor",
-    "generalInfo": "Información General",
-    "generalDesc": "Visualiza y controla la información principal de tu servidor.",
-    "stopServer": "Parar servidor",
-    "restartServer": "Reiniciar servidor",
-    "connectServer": "Conectarse al servidor",
-    "console": "Consola (Registros)",
-    "live": "En directo",
-    "commandPlaceholder": "Escribe un comando...",
-    "send": "Enviar",
-    "searchPlaceholder": "Buscar...",
-    "resourcesTitle": "Recursos del Servidor",
-    "resourcesDesc": "Monitorea el uso de CPU y RAM con gráficas de área",
-    "cpuUsage": "Uso de CPU",
-    "ramUsage": "Uso de RAM",
-    "playersTitle": "Jugadores Conectados",
-    "playersDesc": "Controla y visualiza la información de cada jugador.",
-    "playerHistoryTitle": "Historial de Jugadores",
-    "playerHistoryDesc": "Lista de jugadores que han entrado al servidor.",
-    "playerListsTitle": "Listas de Jugadores",
-    "viewBanlist": "Ver Banlist",
-    "viewBlacklist": "Ver Blacklist",
-    "viewWhitelist": "Ver Whitelist",
-    "settingsTitle": "Ajustes del Servidor (server.properties)",
-    "settingsDesc": "Configura tu servidor de forma detallada. Cada opción muestra su variable y valor actual.",
-    "modloadersTitle": "Gestión de ModLoaders",
-    "modloadersDesc": "Instala o actualiza versiones de Forge, Fabric, Spigot, Paper, etc.",
-    "filesTitle": "Archivos del Servidor",
-    "filesDesc": "Sube, gestiona y edita tus archivos: plugins, mods, configuraciones, etc.",
-    "logsTitle": "Logs Guardados",
-    "logsDesc": "Revisa, descarga y analiza logs históricos o archivos de crash.",
-    "noPlayersConnected": "‑ Sin jugadores conectados ‑",
-    "serverOffline": "‑ Servidor offline ‑",
-    "connectingToServer": "Conectando al servidor...",
-    "noResponse": "No se obtiene respuesta del servidor",
-    "speedTest": "Realizando prueba de velocidad...",
-    "speedTestError": "Error en la prueba de velocidad",
-    "checkingActiveServers": "Comprobando servidores activos...",
-    "noPeersAvailable": "No hay pares disponibles",
-    "selectedRegion": "Se ha seleccionado automáticamente",
-    "msLatency": "ms"
-  },
-  "chat": {
-    "title": "Battly Social",
-    "back": "Volver"
-  },
   "tour": {
     "next": "Siguiente",
     "great": "¡Genial!",
     "finish": "¡Finalizar!",
     "skip": "Saltar tutorial",
     "homeMenuTitle": "Menú de inicio",
-    "homeMenuText": "Este es el menú de inicio de Battly. Aquí podrás ver las últimas noticias, tus amigos en línea y acceder a cualquier sección de Battly.",
+    "homeMenuText": "Aquí puedes ver las noticias y acceder a las secciones del launcher.",
     "newsTitle": "Noticias",
     "newsText": "Aquí podrás ver las últimas noticias de Battly y de Minecraft. Siempre que haya una nueva noticia, te lo haremos saber.",
     "newsToggleText": "Aquí podrás alternar entre las noticias de Battly y las noticias de Minecraft.",
-    "onlineFriendsTitle": "Amigos en línea",
-    "onlineFriendsText": "Aquí podrás ver a tus amigos en línea. Si tienes amigos en línea, podrás verlos aquí.",
     "battlyStatusTitle": "Estado de Battly",
     "battlyStatusText": "Aquí podrás ver el estado de Battly. Si hay algún problema con Battly, te lo haremos saber aquí.",
     "playVersionsTitle": "Jugar versiones",
     "playVersionsText": "Para jugar una versión de Minecraft, simplemente selecciona la versión que quieras y presiona el botón de jugar.",
-    "friends": {
-      "welcome": "¡Bienvenido al sistema de amigos!",
-      "welcomeText": "Aquí podrás gestionar tus amigos, ver quién está en línea y chatear con ellos.",
-      "searchTitle": "Buscar amigos",
-      "searchText": "Usa esta barra para buscar entre tus amigos por nombre.",
-      "filtersTitle": "Filtros de amigos",
-      "filtersText": "Filtra tus amigos por estado: todos, en línea, sin conexión o favoritos.",
-      "addFriendTitle": "Añadir amigo",
-      "addFriendText": "Haz clic aquí para añadir nuevos amigos escribiendo su nombre de usuario.",
-      "friendCardTitle": "Tarjetas de amigos",
-      "friendCardText": "Cada tarjeta muestra el estado de tu amigo. Haz clic derecho para ver más opciones como chatear o eliminar.",
-      "viewModesTitle": "Modos de vista",
-      "viewModesText": "Cambia entre vista de cuadrícula o lista según tu preferencia.",
-      "finishTitle": "¡Listo!",
-      "finishText": "Ya conoces lo básico del sistema de amigos. ¡Empieza a conectar con tus amigos!"
-    },
     "mods": {
       "welcome": "¡Bienvenido al sistema de mods!",
       "welcomeText": "Aquí podrás buscar, descargar e instalar mods, resource packs, shaders y modpacks para tus instancias.",
@@ -1583,10 +1037,8 @@
     "atTime": "a las",
     "profile": "Perfil",
     "chat": "Chat",
-    "friendshipRequests": "Solicitudes de amistad",
     "managePendingRequests": "Gestiona tus solicitudes pendientes",
     "received": "Recibidas",
-    "wantsToBeYourFriend": "quiere ser tu amigo",
     "accept": "Aceptar",
     "reject": "Rechazar",
     "vanilla": "Vanilla",

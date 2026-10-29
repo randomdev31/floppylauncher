@@ -7,10 +7,8 @@ let console_error = console.error;
 let consoleOutput = '';
 import { database } from "../utils.js";
 
-const AnalyticsHelper = require('./assets/js/utils/analyticsHelper.js');
 
 async function initLogger() {
-    // Logger initialization without analytics
     return true;
 }
 
@@ -30,8 +28,6 @@ class logger {
             if (typeof value === 'object') value = JSON.stringify(value);
             consoleOutput += `[LOG] ${new Date().toISOString()} - ${value}\n`;
 
-            AnalyticsHelper.log(AnalyticsHelper.LogLevel.INFO, value, { logger: name })
-                .catch(err => console_error.call(console, 'Analytics log error:', err));
         };
 
         console.info = (value) => {
@@ -40,8 +36,6 @@ class logger {
             if (typeof value === 'object') value = JSON.stringify(value);
             consoleOutput += `[INFO] ${new Date().toISOString()} - ${value}\n`;
 
-            AnalyticsHelper.log(AnalyticsHelper.LogLevel.INFO, value, { logger: name })
-                .catch(err => console_error.call(console, 'Analytics log error:', err));
         };
 
         console.warn = (value) => {
@@ -50,8 +44,6 @@ class logger {
             if (typeof value === 'object') value = JSON.stringify(value);
             consoleOutput += `[WARN] ${new Date().toISOString()} - ${value}\n`;
 
-            AnalyticsHelper.log(AnalyticsHelper.LogLevel.WARN, value, { logger: name })
-                .catch(err => console_error.call(console, 'Analytics log error:', err));
         };
 
         console.debug = (value) => {
@@ -60,8 +52,6 @@ class logger {
             if (typeof value === 'object') value = JSON.stringify(value);
             consoleOutput += `[DEBUG] ${new Date().toISOString()} - ${value}\n`;
 
-            AnalyticsHelper.log(AnalyticsHelper.LogLevel.DEBUG, value, { logger: name })
-                .catch(err => console_error.call(console, 'Analytics log error:', err));
         };
 
         console.error = (value, error) => {
@@ -70,10 +60,6 @@ class logger {
             if (typeof value === 'object') value = JSON.stringify(value);
             consoleOutput += `[ERROR] ${new Date().toISOString()} - ${value}\n`;
 
-            AnalyticsHelper.log(AnalyticsHelper.LogLevel.ERROR, value, {
-                logger: name,
-                error: error ? error.message : null
-            }).catch(err => console_error.call(console, 'Analytics log error:', err));
         };
 
         console.adv = (value) => {

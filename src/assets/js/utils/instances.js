@@ -1141,8 +1141,8 @@ class Instances {
                                 loaderType === "quilt" ? "Quilt" :
                                     loaderType === "neoforge" ? "NeoForge" :
                                         "";
-                    ipcRenderer.send("new-status-discord-jugando", `${langs.playing_in} ${version} ${typeOfVersion}`);
-                    this.UpdateStatus(account.name, "ausente", `${langs.playing_in} ${version} ${typeOfVersion}`);
+
+
                     ipcRenderer.send("new-notification", {
                         title: langs.minecraft_started_correctly,
                         body: langs.minecraft_started_correctly_body,
@@ -1156,11 +1156,7 @@ class Instances {
 
         launch.on("close", (code) => {
             if (launcherSettings.launcher.close === "close-launcher") ipcRenderer.send("main-window-show");
-            ipcRenderer.send("updateStatus", {
-                status: "online",
-                details: langs.in_the_menu,
-                username: account.name,
-            });
+
             console.info(`MineCraft cerrado con el código ${code}`);
             preparingModal.remove();
         });
@@ -1171,10 +1167,6 @@ class Instances {
         });
     }
 
-    UpdateStatus(username, status, details) {
-        console.log(`UpdateStatus: ${username} - ${status} - ${details}`);
-    }
 }
 
 export { Instances };
-

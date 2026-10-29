@@ -4,10 +4,8 @@ import logger from './utils/logger.js';
 import slider from './utils/slider.js';
 const axios = require('axios');
 const { ipcRenderer } = require('electron');
-const { trackEvent } = require("@aptabase/electron/renderer");
 import { Alert } from "./utils/alert.js";
 const { getValue, setValue } = require('./assets/js/utils/storage');
-const AnalyticsHelper = require('./assets/js/utils/analyticsHelper.js');
 
 require('./assets/js/utils/stringLoader.js');
 
@@ -75,8 +73,7 @@ async function changePanel(id) {
     console.log(`✅ Panel cambiado a: ${id}`);
 
     // Track panel change
-    AnalyticsHelper.trackPanelChange(id)
-        .catch(err => console.error('Error tracking panel change:', err));
+
 }
 
 async function addAccount(data, isPremium, isOffline) {
@@ -154,7 +151,6 @@ async function accountSelect(uuid, reload = false) {
 
     const accountData = await db.getAccount(uuid);
     if (accountData) {
-        ipcRenderer.send('select-account', accountData);
         await setValue('selected-account', uuid);
     }
 
@@ -311,4 +307,3 @@ async function headplayer(id, pseudo, isOffline) {
         element.style.backgroundImage = `url(https://minotar.net/skin/${pseudo}.png)`
     }
 }
-

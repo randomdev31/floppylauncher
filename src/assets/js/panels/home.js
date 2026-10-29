@@ -7,7 +7,6 @@ const { StringLoader } = require("./assets/js/utils/stringLoader.js");
 const { loadMinecraftJavaCore } = require('./assets/js/utils/library-loader');
 const { ipcRenderer, ipcMain, shell } = require("electron");
 
-const AnalyticsController = require("./assets/js/utils/analyticsController.js");
 
 import { LoadAPI } from "../utils/loadAPI.js";
 import { CrashReport } from "../utils/crash-report.js";
@@ -99,9 +98,6 @@ class Home {
         this.CargarMods();
         console.timeEnd("📂 Load Mods");
 
-        console.time("🎮 Init Discord State");
-        this.IniciarEstadoDiscord();
-        console.timeEnd("🎮 Init Discord State");
 
         console.time("⚙ Init Config");
         this.initConfig();
@@ -111,28 +107,14 @@ class Home {
         this.InitTheme();
         console.timeEnd("🎨 Init Theme");
 
-        console.time("📜 Get Logs Socket");
-        this.GetLogsSocket();
-        console.timeEnd("📜 Get Logs Socket");
 
         console.time("🔧 Change Java Path");
         this.CambiarRutaJava();
         console.timeEnd("🔧 Change Java Path");
 
-        console.time("📜 Generate Logs Socket");
-        this.GenerarLogsSocket();
-        console.timeEnd("📜 Generate Logs Socket");
 
-        console.time("📶 Set Status");
-        this.SetStatus();
-        console.timeEnd("📶 Set Status");
 
-        console.time("📡 Requests");
-        this.Solicitudes();
-        console.timeEnd("📡 Requests");
 
-        console.time("📢 Ads");
-        console.timeEnd("📢 Ads");
 
         console.time("📖 InstancesClass");
         InstancesClass();
@@ -149,7 +131,6 @@ class Home {
 
         this.HandlePlayPanel();
 
-        this.LoadAnalytics();
 
         this.BattlySavesCloud();
 
@@ -157,36 +138,6 @@ class Home {
     }
 
 
-    async LoadAnalytics() {
-
-
-
-        const Store = require('electron-store');
-        const store = new Store({ name: 'battly-data' });
-        const SERVICE = 'Battly Launcher';
-
-
-        async function migrateAllLocalStorageSecure() {
-            console.log('🔄 Iniciando migración segura de localStorage → electron-store');
-
-            const store = new Store({
-                name: 'battly-data',
-            });
-
-            for (let i = 0; i < localStorage.length; i++) {
-                const key = localStorage.key(i);
-                let raw = await localStorage.getItem(key);
-                let val;
-                try {
-                    val = JSON.parse(raw);
-                } catch {
-                    val = raw;
-                }
-                store.set(key, val);
-                console.log(`  • Migrada la clave "${key}"`);
-            }
-        }
-    }
 
 
 
@@ -980,21 +931,6 @@ class Home {
             ],
         });
 
-        tour.addStep({
-            title: await window.getString('tour.onlineFriendsTitle') || "Online Friends",
-            text: await window.getString('tour.onlineFriendsText') || "Here you can see your online friends. If you have friends online, you'll see them here.",
-            attachTo: {
-                element: ".main-home-panel-left-online-friends",
-                on: "top-start",
-            },
-            buttons: [
-                {
-                    text: await window.getString('tour.next') || "Next",
-                    action: tour.next,
-                    classes: "button is-info is-outlined",
-                },
-            ],
-        });
 
         tour.addStep({
             title: await window.getString('tour.battlyStatusTitle') || "Battly Status",
@@ -1513,8 +1449,8 @@ class Home {
                 modalDiv.querySelector(".content p").innerHTML = `
                     Tus mundos se han subido correctamente a tu cuenta de Google Drive<br>
                     <small style="color: #aaa;">
-                        ${backupData.worlds.length} mundo(s) • ${backupData.totalFiles} archivo(s) • 
-                        ${(backupData.totalSize / 1024 / 1024).toFixed(2)} MB • 
+                        ${backupData.worlds.length} mundo(s) • ${backupData.totalFiles} archivo(s) •
+                        ${(backupData.totalSize / 1024 / 1024).toFixed(2)} MB •
                         ${(backupData.duration / 1000).toFixed(1)}s
                     </small>
                 `;
@@ -1804,13 +1740,13 @@ class Home {
                         <div style="display: flex; justify-content: space-between; align-items: start;">
                             <div style="flex: 1;">
                                 <h3 style="color: #fff; margin-bottom: 10px;">
-                                    <i class="fas fa-cloud-upload-alt"></i> 
+                                    <i class="fas fa-cloud-upload-alt"></i>
                                     Copia de Seguridad #${history.length - index}
                                 </h3>
                                 <p style="color: #aaa; font-size: 0.9em; margin-bottom: 15px;">
                                     <i class="far fa-clock"></i> ${formattedDate}
                                 </p>
-                                
+
                                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 15px;">
                                     <div style="background-color: #101726; padding: 10px; border-radius: 5px;">
                                         <p style="color: #aaa; font-size: 0.8em;">Mundos</p>
@@ -1848,9 +1784,9 @@ class Home {
                                                 <div style="background-color: #101726; padding: 8px; margin-bottom: 5px; border-radius: 3px;">
                                                     <p style="color: #fff; font-weight: bold;">${world.name}</p>
                                                     <p style="color: #aaa; font-size: 0.85em;">
-                                                        ${world.files} archivos • 
-                                                        ${(world.size / 1024 / 1024).toFixed(2)} MB • 
-                                                        ${world.uploadedFiles} nuevos • 
+                                                        ${world.files} archivos •
+                                                        ${(world.size / 1024 / 1024).toFixed(2)} MB •
+                                                        ${world.uploadedFiles} nuevos •
                                                         ${world.updatedFiles} actualizados
                                                     </p>
                                                 </div>
@@ -1859,7 +1795,7 @@ class Home {
                                     </details>
                                 ` : ''}
                             </div>
-                            
+
                             <div style="text-align: right;">
                                 <span style="background-color: ${statusColor}; color: #fff; padding: 5px 10px; border-radius: 5px; font-size: 0.85em;">
                                     ${statusText}
@@ -2384,66 +2320,9 @@ class Home {
         );
     }
 
-    async Ads() {
-        fetch("https://api.battlylauncher.com/ads/get").then(async (res) => {
-            let adsData = await res.json();
 
-            let ads = document.getElementById("ads");
-            ads.src = adsData.image;
-            ads.addEventListener("click", () => {
-                shell.openExternal(adsData.link);
-            });
-        });
-    }
 
-    async Solicitudes() {
-        ipcRenderer.on("cargarSolicitudAmistad", async (event, args) => {
-            changePanel("friends");
-        });
 
-        document.getElementById("friends-btn").addEventListener("click", () => {
-            changePanel("friends");
-        });
-
-        document
-            .getElementById("friends-volver-btn")
-            .addEventListener("click", () => {
-                changePanel("home");
-            });
-    }
-
-    async SetStatus() {
-        let account = await this.database?.getSelectedAccount();
-        console.log(`Setting status for account: ${account.name}`);
-        this.UpdateStatus(account.name, "online", await window.getString('home.inTheMenu') || 'en el menú');
-    }
-
-    async UpdateStatus(username, status, details) {
-        console.log(`🧩 ${username} > ${status} > ${details}`);
-
-        let account = await this.database?.getSelectedAccount();
-        console.log(account);
-
-        if (account?.type === "battly") {
-            console.log("Updating Battly status...");
-            if (!account.token) {
-                new Alert().ShowAlert({
-                    icon: "error",
-                    title: await window.getString('home.passwordNotSet') || 'No has establecido contraseña',
-                });
-
-                this.database.delete(uuid, "accounts");
-                return;
-            }
-
-            ipcRenderer.send("updateStatus", {
-                username,
-                status,
-                details,
-                token: account.token,
-            });
-        }
-    }
 
 
     async Registros() {
@@ -2519,153 +2398,7 @@ class Home {
         }
     }
 
-    async GenerarLogsSocket() {
-        ipcRenderer.on("getLogsAnterior", async () => {
-            let generated = consoleOutput + "\n" + consoleOutput_;
-            await fs.writeFileSync(logFilePath, generated);
-        });
-    }
 
-    async GetLogsSocket() {
-        ipcRenderer.on("avisoObtenerLogs", async (event, args) => {
-            try {
-                await modal.ask({
-                    title: await window.getString('home.titleAccessLogs') || 'Acceso a logs',
-                    text: await window.getString('home.textAccessLogs') || '¿Quieres dar acceso a tus logs?',
-                    html: `${await window.getString('home.requester') || 'Solicitante:'} ${args.user} < br > ${await window.getString('home.reason') || 'Razón'}: ${args.razon} < br > <br>${await window.getString('home.textAccessLogsTwo') || '¿Estás seguro de que quieres compartir tus logs?'}`,
-                    showCancelButton: true,
-                    confirmButtonText: await window.getString('home.allow') || 'Permitir',
-                    cancelButtonText: await window.getString('home.deny') || 'Denegar',
-                    preConfirm: () => true
-                });
-
-                if (!fs.existsSync(logFilePath)) {
-                    let generated = consoleOutput + "\n" + consoleOutput_;
-                    await fs.writeFileSync(logFilePath, generated);
-
-                    let account = await this.database?.getSelectedAccount();
-                    let ram = (await this.database.get("1234", "ram")).value;
-                    let Resolution = (await this.database.get("1234", "screen")).value;
-                    let launcherSettings = (await this.database.get("1234", "launcher")).value;
-
-                    let accountsOnlyUsernamesAndUUID = this.database.getAccounts().map(account => ({
-                        username: account.name,
-                        uuid: account.uuid,
-                    }));
-
-                    let accountOnlyUsernameAndUUID = {
-                        username: account.name,
-                        uuid: account.uuid,
-                    };
-
-                    const userData = {
-                        selectedAccount: accountOnlyUsernameAndUUID,
-                        accounts: accountsOnlyUsernamesAndUUID,
-                        ram: ram,
-                        resolution: Resolution,
-                        launcherSettings: launcherSettings,
-                        javaPath: await getValue("java-path"),
-                        lang: await getValue("lang"),
-                        theme: {
-                            background_loading_screen_color: await getValue("background-loading-screen-color"),
-                            bottom_bar_opacity: await getValue("theme-opacity-bottom-bar"),
-                            color_bottom_bar: await getValue("theme-color-bottom-bar"),
-                            color: await getValue("theme-color"),
-                            start_sound: await getValue("sonido-inicio"),
-                            playing_song: await getValue("songPlaying"),
-                        },
-                        news_shown: {
-                            news_shown_v17: await getValue("news_shown_v1.7"),
-                            news_shown_v18: await getValue("news_shown_v2.0"),
-                            news_shown_v30: await getValue("news_shown_v3.0"),
-                        },
-                        welcome_premium_shown: await getValue("WelcomePremiumShown"),
-                    };
-
-                    ipcRenderer.send("obtenerLogs", userData);
-                } else {
-                    await fs.unlinkSync(logFilePath);
-                    let generated = consoleOutput + "\n" + consoleOutput_;
-                    await fs.writeFileSync(logFilePath, generated);
-
-                    let account = await this.database?.getSelectedAccount();
-                    let ram = (await this.database.get("1234", "ram")).value;
-                    let Resolution = (await this.database.get("1234", "screen")).value;
-                    let launcherSettings = (await this.database.get("1234", "launcher")).value;
-
-                    let accountsOnlyUsernamesAndUUID = this.database.getAccounts().map(account => ({
-                        username: account.name,
-                        uuid: account.uuid,
-                    }));
-
-                    let accountOnlyUsernameAndUUID = {
-                        username: account.name,
-                        uuid: account.uuid,
-                    };
-
-                    const userData = {
-                        selectedAccount: accountOnlyUsernameAndUUID,
-                        accounts: accountsOnlyUsernamesAndUUID,
-                        ram: ram,
-                        resolution: Resolution,
-                        launcherSettings: launcherSettings,
-                        javaPath: await getValue("java-path"),
-                        lang: await getValue("lang"),
-                        theme: {
-                            background_loading_screen_color: await getValue("background-loading-screen-color"),
-                            bottom_bar_opacity: await getValue("theme-opacity-bottom-bar"),
-                            color_bottom_bar: await getValue("theme-color-bottom-bar"),
-                            color: await getValue("theme-color"),
-                            start_sound: await getValue("sonido-inicio"),
-                            playing_song: await getValue("songPlaying"),
-                        },
-                        news_shown: {
-                            news_shown_v17: await getValue("news_shown_v1.7"),
-                            news_shown_v18: await getValue("news_shown_v2.0"),
-                            news_shown_v30: await getValue("news_shown_v3.0"),
-                        },
-                        welcome_premium_shown: await getValue("WelcomePremiumShown"),
-                    };
-
-                    ipcRenderer.send("obtenerLogs", userData);
-                }
-
-            } catch (err) {
-                if (err === 'cancelled') {
-                    new Alert().ShowAlert({
-                        icon: "error",
-                        title: await window.getString('home.accessLogsDenied') || 'Acceso a logs denegado',
-                        text: await window.getString('home.accessLogsDeniedText') || 'Has denegado el acceso a los logs'
-                    });
-                } else {
-                    console.error("Error inesperado al procesar solicitud de logs:", err);
-                }
-            }
-        });
-
-
-        ipcRenderer.on("enviarSocketID", async (event, args) => {
-            try {
-                await modal.ask({
-                    title: await window.getString('home.titleAccessLogs') || 'Acceso a logs',
-                    text: `${await window.getString('home.yourUniqueIdIs') || 'Tu ID único es'} ${args.sessionID} ${await window.getString('home.dontShareIt') || 'no lo compartas'}`,
-                    showCancelButton: false,
-                    confirmButtonText: await window.getString('home.copy') || 'Copiar',
-                    preConfirm: () => true
-                });
-
-                navigator.clipboard.writeText(args.sessionID);
-                new Alert().ShowAlert({
-                    icon: "success",
-                    title: await window.getString('home.idCopiedCorrectly') || 'ID copiado correctamente',
-                });
-
-            } catch (err) {
-                console.error("Error al copiar ID:", err);
-            }
-        });
-
-    }
 
     async WaitData() {
         if (!fs.existsSync(`${dataDirectory}/.battly`)) {
@@ -2722,11 +2455,6 @@ class Home {
     }
 
     async InitTheme() {
-        const btnDownload1 = document.getElementById("music-btn");
-        btnDownload1.addEventListener("click", () => {
-            changePanel("music");
-        });
-
         const video = document.getElementById("video-background");
         let backgroundVideo = await getValue("background-video");
 
@@ -2745,9 +2473,6 @@ class Home {
     }
 
 
-    async IniciarEstadoDiscord() {
-        ipcRenderer.send("new-status-discord");
-    }
 
     async CargarMods() {
         let BotonUnirseServidorDiscord = document.getElementById(
@@ -2812,72 +2537,6 @@ class Home {
             });
         });
 
-        const slider = document.querySelector(".home-online-friends");
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-        let velX = 0;
-        let momentumID;
-
-        slider.addEventListener("mousedown", (e) => {
-            isDown = true;
-            slider.classList.add("active");
-            startX = e.pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
-
-            document.querySelectorAll(".online-friend").forEach((friend) => {
-                friend.style.cursor = "grabbing";
-            });
-            cancelMomentumTracking();
-        });
-
-        slider.addEventListener("mouseleave", () => {
-            isDown = false;
-            slider.classList.remove("active");
-
-            document.querySelectorAll(".online-friend").forEach((friend) => {
-                friend.style.cursor = "pointer";
-            });
-
-            beginMomentumTracking();
-        });
-
-        slider.addEventListener("mouseup", () => {
-            isDown = false;
-            slider.classList.remove("active");
-
-            document.querySelectorAll(".online-friend").forEach((friend) => {
-                friend.style.cursor = "pointer";
-            });
-
-            beginMomentumTracking();
-        });
-
-        slider.addEventListener("mousemove", (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * 1.1;
-            velX = walk - (slider.scrollLeft - scrollLeft);
-            slider.scrollLeft = scrollLeft - walk;
-        });
-
-        function beginMomentumTracking() {
-            cancelMomentumTracking();
-            momentumID = requestAnimationFrame(momentumLoop);
-        }
-
-        function cancelMomentumTracking() {
-            cancelAnimationFrame(momentumID);
-        }
-
-        function momentumLoop() {
-            slider.scrollLeft -= velX;
-            velX *= 0.95;
-            if (Math.abs(velX) > 0.5) {
-                momentumID = requestAnimationFrame(momentumLoop);
-            }
-        }
         if (!fs.existsSync(`${dataDirectory}/.battly`)) {
             fs.mkdirSync(`${dataDirectory}/.battly`);
         } else if (!fs.existsSync(`${dataDirectory}/.battly/instances`)) {
@@ -2892,7 +2551,6 @@ class Home {
 
         const tooltips = {
             "boton_abrir_mods": window.stringLoader.getString("tooltips.mods"),
-            "music-btn": window.stringLoader.getString("tooltips.music"),
             "instancias-btn": window.stringLoader.getString("tooltips.instances"),
             "download-btn": window.stringLoader.getString("tooltips.download"),
             "play-btn": window.stringLoader.getString("tooltips.play")

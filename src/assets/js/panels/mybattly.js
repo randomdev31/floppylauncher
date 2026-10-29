@@ -19,7 +19,6 @@ class MyBattly {
         this.database = await new database().init();
         this.config = config;
         this.Load();
-        this.LoadFriends();
 
         // Observar cuando el panel se activa
         this.setupPanelObserver();
@@ -929,32 +928,6 @@ class MyBattly {
             console.warn("[MyBattly] No se pudo cargar el historial de copias de seguridad:", error);
         }
 
-        let account = await this.database?.getSelectedAccount();
-
-        fetch('https://api.battlylauncher.com/api/v2/users/getUserStats', {
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${account.token}`,
-            }
-        }).then(res => res.json()).then(res => {
-            if (res.error) {
-                console.error(res.error);
-                new Alert().ShowAlert({
-                    icon: "error",
-                    title: window.stringLoader.getString("mybattly.errorLoadingStats")
-                });
-                return;
-            }
-
-            console.log(res);
-
-            const playedHours = Math.floor(res.data.tiempoJugado / 3600);
-            const playedMinutes = Math.floor((res.data.tiempoJugado % 3600) / 60);
-
-            document.getElementById("mybattly-stats-hours").innerHTML = window.stringLoader.getString("mybattly.playedTime", { hours: playedHours, minutes: playedMinutes });
-        });
-
         const selectedAccount = await this.database.getSelectedAccount();
         const selectedAccountName = selectedAccount.name || window.stringLoader.getString("mybattly.noAccountSelected");
         document.getElementById("b-mybattly-username").innerHTML = selectedAccountName;
@@ -1019,118 +992,6 @@ class MyBattly {
         }
     }
 
-    async LoadFriends() {
-        document.getElementById("mybattly-btn").addEventListener("click", async () => {
-            const notificationsList = document.querySelector(".b-mybattly-notifications-list");
-            let account = await this.database?.getSelectedAccount();
-
-            fetch('https://api.battlylauncher.com/api/v2/users/obtenerSolicitudes', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${account.token}`,
-                }
-            }).then(res => res.json()).then(async res => {
-                if (res.error) {
-                    console.error(res.error);
-                    new Alert().ShowAlert({
-                        icon: "error",
-                        title: window.stringLoader.getString("mybattly.errorLoadingRequests")
-                    });
-                    return;
-                } else {
-                    for (let solicitud of res.recibidas) {
-                        const notification = document.createElement("div");
-                        notification.classList.add("b-mybattly-notification-message");
-
-                        notification.innerHTML = `
-                    <h1><i class="fa-solid fa-user-friends"></i> Solicitud de amistad</h1>
-                    <hr class="b-mybattly-hr" />
-                    <p>${solicitud} te ha enviado una solicitud de amistad.</p>
-                    <div class="b-mybattly-user-profile-last-register-actions">
-                        <button
-                            class="button is-info is-small is-outlined b-mybattly-b-600 b-mybattly-is-inter btn-dont-change">
-                            Aceptar
-                        </button>
-                        <button
-                            class="button is-danger is-small is-outlined b-mybattly-b-600 b-mybattly-is-inter btn-dont-change">
-                            Rechazar
-                        </button>
-                    </div>
-                `;
-
-                        const acceptButton = notification.querySelector(".button.is-info");
-                        const rejectButton = notification.querySelector(".button.is-danger");
-
-                        acceptButton.addEventListener('click', () => {
-                            fetch('https://api.battlylauncher.com/api/v2/users/aceptarSolicitud', {
-                                method: 'POST',
-                                headers: {
-                                    "Content-Type": "application/json",
-                                    Authorization: `Bearer ${account.token}`,
-                                },
-                                body: JSON.stringify({
-                                    solicitud: solicitud,
-                                })
-                            }).then(res => res.json()).then(res => {
-                                if (res.error) {
-                                    console.error(res.error);
-
-                                    new Alert().ShowAlert({
-                                        icon: "error",
-                                        title: window.stringLoader.getString("mybattly.errorAcceptingRequest")
-                                    });
-                                } else {
-                                    new Alert().ShowAlert({
-                                        icon: "success",
-                                        title: window.stringLoader.getString("mybattly.requestAccepted")
-                                    });
-                                }
-                            });
-
-                            notification.remove();
-                        });
-
-                        rejectButton.addEventListener('click', () => {
-                            fetch('https://api.battlylauncher.com/v2/api/users/rechazarSolicitud', {
-                                method: 'POST',
-                                headers: {
-                                    "Content-Type": "application/json",
-                                    Authorization: `Bearer ${account.token}`,
-                                },
-                                body: JSON.stringify({
-                                    amigo: solicitud
-                                })
-                            }).then(res => res.json()).then(res => {
-                                if (res.error) {
-                                    console.error(res.error);
-
-                                    new Alert().ShowAlert({
-                                        icon: "error",
-                                        title: window.stringLoader.getString("mybattly.errorRejectingRequest")
-                                    });
-                                } else {
-                                    new Alert().ShowAlert({
-                                        icon: "success",
-                                        title: window.stringLoader.getString("mybattly.requestRejected")
-                                    });
-                                }
-                            });
-
-                            new Alert().ShowAlert({
-                                icon: "success",
-                                title: window.stringLoader.getString("mybattly.requestRejected")
-                            });
-
-                            notification.remove();
-                        });
-
-                        notificationsList.appendChild(notification);
-                    }
-                }
-            });
-        });
-    }
 }
 
 export default MyBattly;

@@ -36,15 +36,6 @@ obfuscateSrc().then(() => {
 
     builder.build({
         config: {
-            publish: [
-                {
-                    provider: "github",
-                    owner: "1ly4s0",
-                    repo: "battlylauncher",
-                    releaseType: "release"
-                }
-            ],
-            generateUpdatesFilesForAllChannels: true,
             appId: productname,
             productName: productname,
             artifactName: '${productName}-${os}-${arch}.${ext}',

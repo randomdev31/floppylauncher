@@ -1,12 +1,11 @@
 ﻿/**
  * @author TECNO BROS
- 
+
  */
 
 const { ipcRenderer } = require("electron");
 const fs = require("fs");
 const path = require("path");
-const AnalyticsHelper = require('./assets/js/utils/analyticsHelper.js');
 import * as NBT from "../../../../../node_modules/nbtify/dist/index.js";
 import { LoadAPI } from "../../utils/loadAPI.js";
 const { loadMinecraftJavaCore } = require('./assets/js/utils/library-loader');
@@ -1583,9 +1582,7 @@ class Download {
                     }
                 });
                 launcher.on("close", () => {
-                    ipcRenderer.send("updateStatus", {
-                        status: "online", details: inTheMenu, username: account.name,
-                    });
+
                     if (ui.modal.isConnected) ui.modal.remove();
                     if (launcherSettings.launcher.close === "close-launcher")
                         ipcRenderer.send("main-window-show");
@@ -1896,9 +1893,7 @@ class Download {
                     }
                 });
                 launcher.on("close", () => {
-                    ipcRenderer.send("updateStatus", {
-                        status: "online", details: inTheMenu, username: account.name,
-                    });
+
                     if (ui.modal.isConnected) ui.modal.remove();
                     if (launcherSettings.launcher.close === "close-launcher")
                         ipcRenderer.send("main-window-show");

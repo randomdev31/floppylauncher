@@ -20,29 +20,11 @@ class StringLoader {
     }
 
     /**
-     * Obtiene la lista de idiomas disponibles desde la API
+     * Obtiene la lista de idiomas incluidos en el launcher
      * @returns {Promise<Array<string>>} Lista de códigos de idioma disponibles
      */
     async getAvailableLanguages() {
-        try {
-            const baseURL = 'https://api.battlylauncher.com';
-            const apiUrl = `${baseURL}/api/v2/launcher/strings`;
-
-            const response = await fetch(apiUrl);
-
-            if (response.ok) {
-                const data = await response.json();
-                if (data.status === 200 && Array.isArray(data.languages)) {
-                    return data.languages;
-                }
-            }
-
-            // Fallback a idiomas conocidos
-            return ['en', 'es'];
-        } catch (error) {
-            console.error('Error fetching available languages:', error);
-            return ['en', 'es'];
-        }
+        return ['en', 'es'];
     }
 
     async loadStrings(language = null) {
@@ -73,27 +55,6 @@ class StringLoader {
 
     async _doLoadStrings(language) {
         try {
-            // Intentar cargar desde la API primero
-            const baseURL = 'https://api.battlylauncher.com';
-            const apiUrl = `${baseURL}/launcher/langs/${language}`;
-
-            const response = await fetch(apiUrl);
-
-            if (response.ok) {
-                const data = await response.json();
-
-                if (data.status === 200 && data.strings) {
-                    this.strings = data.strings;
-                    this.currentLanguage = data.language;
-                    this.stringCache.clear();
-
-                    console.log(`✅ Strings loaded from API for language: ${data.language}${data.fallback ? ' (fallback)' : ''}`);
-                    return this.strings;
-                }
-            }
-
-            // Si la API falla, intentar cargar localmente como fallback
-            console.warn('⚠️ API not available, loading strings from local files...');
             const localResponse = await fetch(`./assets/langs/strings.${language}.json`);
             this.strings = await localResponse.json();
             this.currentLanguage = language;
@@ -241,7 +202,7 @@ class StringLoader {
     }
 
     /**
-     * Recarga los strings desde la API
+     * Recarga los strings incluidos en el launcher
      * @param {string} language - Idioma a cargar (opcional)
      * @returns {Promise<Object>} Los strings cargados
      */
@@ -330,7 +291,7 @@ window.getCurrentLanguage = function () {
 };
 
 /**
- * Recarga los strings desde la API
+ * Recarga los strings incluidos en el launcher
  * @param {string} language - Idioma a cargar (opcional)
  * @returns {Promise<Object>} Los strings cargados
  */
