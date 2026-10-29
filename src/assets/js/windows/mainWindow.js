@@ -44,7 +44,7 @@ async function createWindow() {
     transparent: false,
     icon: `./src/assets/images/icon.${os.platform() === "win32" ? "ico" : "png"
       }`,
-    frame: os.platform() === "win32" ? false : true,
+    frame: false,
     show: fs.existsSync(`${dataDirectory}\\.battly\\launchboost`) ? false : true,
     webPreferences: {
       contextIsolation: false,

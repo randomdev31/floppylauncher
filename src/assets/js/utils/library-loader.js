@@ -17,7 +17,7 @@ class LibraryLoader {
     }
 
     /**
-     * Descarga la librería minecraft-java-core desde la CDN de Battly
+     * Descarga la librería minecraft-java-core desde la CDN de Floppy
      * @param {Object} config - Configuración de BattlyConfig.libraries.package_mimbpyzw_s52o
      * @returns {Promise<string>} Ruta al módulo cargado
      */
@@ -451,7 +451,7 @@ class LibraryLoader {
         const packageJsonPath = path.join(this.libraryPath, "package.json");
 
         if (!fs.existsSync(packageJsonPath)) {
-            throw new Error("minecraft-java-core no está instalada. No se encontró package.json. Intenta reiniciar Battly.");
+            throw new Error("minecraft-java-core no está instalada. No se encontró package.json. Intenta reiniciar Floppy.");
         }
 
         let packageJson;
@@ -477,7 +477,7 @@ class LibraryLoader {
             console.warn(`⚠️ Advertencia: Directorios faltantes en la librería: ${missingDirs.join(', ')}`);
         }
 
-        // Agregar las rutas de node_modules de Battly a las rutas de búsqueda
+        // Agregar las rutas de node_modules de Floppy a las rutas de búsqueda
         const possibleNodeModulesPaths = [
             path.join(process.cwd(), "node_modules"),
             path.join(__dirname, "..", "..", "..", "..", "node_modules"), // Relativo a library-loader.js
@@ -497,7 +497,7 @@ class LibraryLoader {
             delete require.cache[require.resolve(indexPath)];
         }
 
-        console.log("📚 Cargando minecraft-java-core con acceso a node_modules de Battly");
+        console.log("📚 Cargando minecraft-java-core con acceso a node_modules de Floppy");
 
         return require(indexPath);
     }
@@ -515,7 +515,7 @@ function getLibraryLoader() {
 
 /**
  * Función de ayuda para cargar la librería minecraft-java-core
- * @param {Object} battlyConfig - Configuración de Battly (debe tener libraries.package_mimbpyzw_s52o)
+ * @param {Object} battlyConfig - Configuración de Floppy (debe tener libraries.package_mimbpyzw_s52o)
  * @param {Object} options - Opciones adicionales { offlineMode: boolean }
  * @returns {Promise<Object>} Módulo cargado con Launch, Microsoft, Mojang, etc.
  */

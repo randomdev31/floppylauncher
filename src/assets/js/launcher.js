@@ -22,6 +22,7 @@ import { LoadAPI } from "./utils/loadAPI.js";
 
 class Launcher {
   async init() {
+    this.initFrame();
     this.initTheme();
     const loadingText = document.getElementById("loading-text");
     loadingText.innerHTML = "Cargando Panel de Inicio";
@@ -42,8 +43,6 @@ class Launcher {
     });
 
     console.info("Starting Launcher initialization");
-
-    if (process.platform == "win32") this.initFrame();
 
     const { config } = await import("./utils.js");
 
@@ -176,21 +175,15 @@ class Launcher {
     loadingText.innerHTML = "Cargando paneles";
     document.querySelector(".preload-content").style.display = "block";
     console.log("🔄 Iniciando Frame...");
-    document.querySelector(".titlebar").classList.toggle("hide");
-    document.querySelector(".dragbar").classList.toggle("hide");
+    document.querySelector(".titlebar").classList.remove("hide");
+    document.querySelector(".dragbar").classList.remove("hide");
 
     document.querySelector("#minimize").addEventListener("click", () => {
       ipcRenderer.send("main-window-minimize");
     });
 
-    let maximized = false;
-    let maximize = document.querySelector("#maximize");
-    maximize.addEventListener("click", () => {
-      if (maximized) ipcRenderer.send("main-window-maximize");
-      else ipcRenderer.send("main-window-maximize");
-      maximized = !maximized;
-      maximize.classList.toggle("icon-maximize");
-      maximize.classList.toggle("icon-restore-down");
+    document.querySelector("#maximize").addEventListener("click", () => {
+      ipcRenderer.send("main-window-maximize");
     });
 
     document.querySelector("#close").addEventListener("click", () => {
@@ -277,7 +270,7 @@ class Launcher {
 
           await this.database.updateAccount(acc.uuid, updatedAccount);
 
-          addAccount(updatedAccount, false, true);
+          addAccount(updatedAccount, true);
           if (refresh.uuid === selectedAccount?.uuid) accountSelect(refresh.uuid);
         } else if (acc.type === "battly") {
           console.log(`🔄 Autenticando Battly – ${acc.name}`);
@@ -298,7 +291,6 @@ class Launcher {
               access_token: "1234",
               client_token: "1234",
               user_properties: "{}",
-              premium: data.data.premium,
               skins: data.data.skins,
               connections: data.data.connections,
               meta: { type: "battly", offline: true }
@@ -306,7 +298,7 @@ class Launcher {
 
             await this.database.updateAccount(acc.uuid, updatedAccount);
             showPreload(`Actualizando perfil de ${updatedAccount.name}…`);
-            addAccount(updatedAccount, data.data.premium, false);
+            addAccount(updatedAccount, false);
 
             if (updatedAccount.uuid === selectedAccount?.uuid) {
               accountSelect(updatedAccount.uuid);

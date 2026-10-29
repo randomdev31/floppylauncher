@@ -87,7 +87,7 @@ class Login {
                     this.database.addAccount(account);
                     this.database.selectAccount(account.uuid);
 
-                    addAccount(account, false, true);
+                    addAccount(account, true);
                     accountSelect(account.uuid, true);
 
                     let news_shown = await getValue("news_shown_v3.0");
@@ -205,22 +205,11 @@ class Login {
                             }
                         }
 
-                        infoLogin.innerHTML = window.stringLoader?.getString("login.checking_if_you_are_premium") || "Verificando si eres premium...";
-
-                        let premiums = [];
-                        try {
-                            premiums = await fetch("https://api.battlylauncher.com/api/usuarios/obtenerUsuariosPremium").then(response => response.json()).then(data => data).catch(err => { });
-                        } catch (error) {
-                            premiums = [];
-                        }
 
                         await this.database.addAccount(account)
                         await this.database?.selectAccount(account.uuid);
 
-                        let isPremium;
-                        if (!premiums) isPremium = false;
-                        else isPremium = premiums.includes(account.name);
-                        addAccount(account, isPremium, false);
+                        addAccount(account, false);
 
                         document.getElementById("code-login-panel").classList.remove("is-active");
                         document.getElementById("code-text").value = "";
@@ -254,7 +243,7 @@ class Login {
                         blockWelcome.innerHTML = `
                         <div class="news-header">
                             <div class="header-text">
-                                <div class="title_">${window.stringLoader?.getString("login.welcome_again_to_battly") || "¡Bienvenido a Battly!"}, ${account.name}</div>
+                                <div class="title_">${window.stringLoader?.getString("login.welcome_again_to_battly") || "¡Bienvenido a Floppy!"}, ${account.name}</div>
                             </div>
                         </div>
                         <div class="news-content">
@@ -306,22 +295,11 @@ class Login {
                         }
                     }
 
-                    infoLogin.innerHTML = window.stringLoader?.getString("login.checking_if_you_are_premium") || "Verificando si eres premium...";
-
-                    let premiums = [];
-                    try {
-                        premiums = await fetch("https://api.battlylauncher.com/api/usuarios/obtenerUsuariosPremium").then(response => response.json()).then(data => data).catch(err => { });
-                    } catch (error) {
-                        premiums = [];
-                    }
 
                     await this.database.addAccount(account)
                     await this.database?.selectAccount(account.uuid);
 
-                    let isPremium;
-                    if (!premiums) isPremium = false;
-                    else isPremium = premiums.includes(account.name);
-                    addAccount(account, isPremium, false);
+                    addAccount(account, false);
 
                     accountSelect(account.uuid, true)
 
@@ -352,7 +330,7 @@ class Login {
                     blockWelcome.innerHTML = `
                     <div class="news-header">
                         <div class="header-text">
-                            <div class="title_">${window.stringLoader?.getString("login.welcome_again_to_battly") || "¡Bienvenido a Battly!"}, ${account.name}</div>
+                            <div class="title_">${window.stringLoader?.getString("login.welcome_again_to_battly") || "¡Bienvenido a Floppy!"}, ${account.name}</div>
                         </div>
                     </div>
                     <div class="news-content">
@@ -513,30 +491,13 @@ class Login {
                         }
                     }
 
-                    infoLogin.innerHTML = window.stringLoader?.getString("login.checking_premium") || "Verificando premium...";
-
-                    let premiums = [];
-                    try {
-                        premiums = await fetch("https://api.battlylauncher.com/api/usuarios/obtenerUsuariosPremium").then(response => response.json()).then(data => data).catch(err => { });
-                    } catch (error) {
-                        premiums = [];
-                    }
 
                     await this.database.addAccount(account)
                     await this.database?.selectAccount(account.uuid);
 
-                    let isPremium;
-                    if (!premiums) isPremium = false;
-                    else isPremium = premiums.includes(account.name);
-                    addAccount(account, isPremium, false);
+                    addAccount(account, false);
 
-                    if (isPremium) {
-                        document.getElementById("header-text-to-add").innerHTML = window.stringLoader.getString("login.premiumEdition");
-                        document.getElementById("header-frame").style.background = `radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
-                        radial - gradient(ellipse farthest - corner at left top, #FFFFFF 0 %, #FFFFAC 8 %, #D1B464 25 %, #5d4a1f 62.5 %, #5d4a1f 100 %);`;
-                    } else {
                         document.getElementById("header-frame").style.background = `#0f1623`;
-                    }
 
                     infoLoginPanel.classList.remove("is-active");
 
@@ -566,7 +527,7 @@ class Login {
                     blockWelcome.innerHTML = `
                     <div class="news-header">
                         <div class="header-text">
-                            <div class="title_">${window.stringLoader?.getString("login.welcome_again_to_battly") || "¡Bienvenido a Battly!"}, ${account.name}</div>
+                            <div class="title_">${window.stringLoader?.getString("login.welcome_again_to_battly") || "¡Bienvenido a Floppy!"}, ${account.name}</div>
                         </div>
                     </div>
                     <div class="news-content">

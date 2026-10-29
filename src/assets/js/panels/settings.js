@@ -115,7 +115,7 @@ class Settings {
 
       new Alert().ShowAlert({
         title: window.stringLoader?.getString("settings.changing_language") || "Cambiando idioma...",
-        text: window.stringLoader?.getString("settings.changing_language_text") || "Battly se reiniciará para aplicar el cambio",
+        text: window.stringLoader?.getString("settings.changing_language_text") || "Floppy se reiniciará para aplicar el cambio",
         icon: "info",
       });
 
@@ -129,31 +129,14 @@ class Settings {
     document
       .getElementById("background-btn")
       .addEventListener("click", async (e) => {
-        let account = await this.database?.getSelectedAccount();
-        let isPremium = account.premium;
-
-        if (isPremium) {
-          document.getElementById("background-btn").style.display =
-            "";
-          document.getElementById("launchboost-panel").style.display = "block";
-        } else {
-          document.getElementById("background-btn").style.display =
-            "none";
-          document.getElementById("launchboost-panel").style.display = "none";
-        }
+        document.getElementById("background-btn").style.display = "";
+        document.getElementById("launchboost-panel").style.display = "block";
       });
 
     document
       .getElementById("launcher-btn")
       .addEventListener("click", async (e) => {
-        let account = await this.database?.getSelectedAccount();
-        let isPremium = account.premium;
-
-        if (isPremium) {
-          document.getElementById("launchboost-panel").style.display = "block";
-        } else {
-          document.getElementById("launchboost-panel").style.display = "none";
-        }
+        document.getElementById("launchboost-panel").style.display = "block";
       });
 
     document
@@ -207,60 +190,6 @@ class Settings {
         }
         accountSelect(uuid, true);
         this.database?.selectAccount(uuid);
-      }
-
-      if (e.target.classList.contains("fa-fire")) {
-        console.log("es premium");
-        const modal = document.createElement("div");
-        modal.classList.add("modal", "is-active");
-
-        const modalBackground = document.createElement("div");
-        modalBackground.classList.add("modal-background");
-
-        const modalCard = document.createElement("div");
-        modalCard.classList.add("modal-card");
-        modalCard.classList.add("modal-animated");
-        modalCard.style.backgroundColor = "#0f1623";
-        modalCard.style.height = "90%";
-
-        const modalHeader = document.createElement("header");
-        modalHeader.classList.add("modal-card-head");
-        modalHeader.style.backgroundColor = "#0f1623";
-
-        const modalTitle = document.createElement("h1");
-        modalTitle.classList.add("modal-card-title");
-        modalTitle.textContent = await window.getString("settings.congratulations");
-        modalTitle.style.color = "#fff";
-        modalTitle.style.fontSize = "30px";
-        modalTitle.style.fontWeight = "600";
-
-        const closeButton = document.createElement("button");
-        closeButton.classList.add("delete");
-        closeButton.setAttribute("aria-label", "close");
-
-        closeButton.addEventListener("click", async () => {
-          modal.classList.remove("is-active");
-          await setValue("WelcomePremiumShown", true);
-        });
-
-        await this.createInteractivePremiumTour();
-        await setValue("WelcomePremiumShown", true);
-
-        modalHeader.appendChild(modalTitle);
-        modalHeader.appendChild(closeButton);
-
-        modalBody.appendChild(content);
-
-        modalFooter.appendChild(acceptButton);
-
-        modalCard.appendChild(modalHeader);
-        modalCard.appendChild(modalBody);
-        modalCard.appendChild(modalFooter);
-
-        modal.appendChild(modalBackground);
-        modal.appendChild(modalCard);
-
-        document.body.appendChild(modal);
       }
 
       if (
@@ -682,10 +611,10 @@ class Settings {
     const recoEl = this._ensureRecoEl();
     const fmt = n => (Math.round(n * 10) / 10).toString();
 
-    console.log(`Ahora, Battly te recomienda poner como mínimo ${fmt(minGB)} GB y como máximo ${fmt(maxGB)} GB`);
+    console.log(`Ahora, Floppy te recomienda poner como mínimo ${fmt(minGB)} GB y como máximo ${fmt(maxGB)} GB`);
     recoEl.style.display = 'block';
     recoEl.hidden = false;
-    recoEl.textContent = `Ahora, Battly te recomienda poner como mínimo ${fmt(minGB)} GB y como máximo ${fmt(maxGB)} GB`;
+    recoEl.textContent = `Ahora, Floppy te recomienda poner como mínimo ${fmt(minGB)} GB y como máximo ${fmt(maxGB)} GB`;
   }
 
   async initResolution() {
@@ -1633,15 +1562,10 @@ class Settings {
 
 
   async newTheme() {
-    const API = 'https://api.battlylauncher.com/api/themes';
-    const account = await this.database.getSelectedAccount();
-    if (account.type !== "battly") return;
-    const authToken = account?.token;
-    const authHeader = { Authorization: `Bearer ${authToken}` };
+    const { themeRequest, readImageFile } = require('./assets/js/utils/personalization');
     const ACTIVE_KEY = 'activeThemeCloud_v1';
     const setActive = id => localStorage.setItem(ACTIVE_KEY, id);
     const getActive = () => localStorage.getItem(ACTIVE_KEY);
-    const isPremium = !!account?.premium;
 
     let myThemes = [];
     const themeList = document.getElementById('themeList');
@@ -1655,32 +1579,9 @@ class Settings {
     const open = m => m.classList.add('is-active');
     const close = m => m.classList.remove('is-active');
 
-    const api = async (path, body) => {
-      const res = await fetch(`${API}${path}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', ...authHeader },
-        body: body ? JSON.stringify(body) : undefined
-      });
-      if (!res.ok) throw new Error(`API ${res.status}`);
-      return res.json();
-    };
-
-    const loadMyThemes = async () => { myThemes = await api('/my', {}); };
-
-    const loadDefaultTheme = async () => {
-      try {
-        const res = await fetch(`${API}/default`, {
-          method: 'GET',
-          headers: authHeader
-        });
-        if (res.ok) {
-          return await res.json();
-        }
-      } catch (err) {
-        console.error('Error cargando tema predeterminado:', err);
-      }
-      return null;
-    };
+    const api = themeRequest;
+    const loadMyThemes = async () => { myThemes = await api('/my'); };
+    const loadDefaultTheme = async () => null;
 
     const loadAllThemes = async () => {
       await loadMyThemes();
@@ -1739,7 +1640,6 @@ class Settings {
                 <span>${await window.getString("settings.selectImage")}</span>
               </button>
               <input id="bgFileInput" type="file" accept="image/png,image/jpeg,image/gif,image/webp" style="display:none;">
-              ${!isPremium ? `<p class="help is-danger" id="gifRestriction" style="margin-top:8px">${await window.getString("settings.gifOnlyPremium")}</p>` : ''}
             </div>
           </div>
         </section>
@@ -1791,19 +1691,6 @@ class Settings {
 
         const isGifSelected = (file.type && file.type.toLowerCase() === 'image/gif') || /\.gif$/i.test(file.name || '');
 
-        if (isGifSelected && !isPremium) {
-          ModalAsk.ask({
-            title: await window.getString("settings.premiumFeature"),
-            text: await window.getString("settings.uploadAnimatedPremiumOnly"),
-            icon: 'info',
-            confirmButtonText: await window.getString("settings.accept"),
-            confirmButtonColor: '#3085d6'
-          });
-          bgInput.value = '';
-          tempBgURL = null;
-          tempBgAnimated = false;
-          return;
-        }
 
         ModalAsk.ask({
           title: await window.getString("settings.uploadingImage"),
@@ -1831,25 +1718,9 @@ class Settings {
         const ok = document.querySelector('#bgDone');
         bar.style.display = 'block';
 
-        // Subir a Wasabi/S3 en lugar de Imgur
         try {
-          const formData = new FormData();
-          formData.append('background', file);
-
-          const res = await fetch('https://api.battlylauncher.com/api/v2/background/subir', {
-            method: 'POST',
-            headers: authHeader,
-            body: formData
-          });
-
-          const d = await res.json();
-
-          if (d.status !== 200 || !d.url) {
-            throw new Error(d.message || 'Error al subir la imagen');
-          }
-
-          tempBgURL = d.url;
-          tempBgAnimated = Boolean(d.animated || isGifSelected);
+          tempBgURL = await readImageFile(file);
+          tempBgAnimated = isGifSelected;
 
           bar.value = 100;
           ok.style.display = 'block';
@@ -1886,16 +1757,6 @@ class Settings {
           animated: (tempBgURL !== null) ? tempBgAnimated : (editing?.animated || false)
         };
 
-        if (data.animated && !isPremium) {
-          ModalAsk.ask({
-            title: await window.getString("settings.premiumFeature"),
-            text: await window.getString("settings.cantSaveAnimatedNonPremium"),
-            icon: 'info',
-            confirmButtonText: await window.getString("settings.accept"),
-            confirmButtonColor: '#3085d6'
-          });
-          return;
-        }
 
         try {
           if (editing) {
@@ -1932,110 +1793,6 @@ class Settings {
       return themeModal;
     };
 
-    async function buildReviewModal(theme, status, rejectReason = '') {
-      const THEME_ID = theme._id;
-      const activeIdx = { requested: 0, pending: 1, approved: 2, rejected: 2, draft: 0 }[status] ?? 0;
-
-      document.getElementById('reviewStateModal')?.remove();
-
-      const wrap = document.createElement('div');
-      wrap.id = 'reviewStateModal';
-      wrap.innerHTML = `
-      <div class="modal is-active">
-        <div class="modal-background"></div>
-        <div class="modal-card glass" style="width:620px">
-          <header class="modal-card-head">
-            <p class="modal-card-title"><i class="fa-solid fa-circle-info mr-2"></i>${await window.getString("settings.publishationStatus")}</p>
-            <button class="delete" aria-label="close"></button>
-          </header>
-          <section class="modal-card-body" style="background:#0f1623">
-            <div class="timeline">
-              <div class="step ${activeIdx >= 0 ? 'active' : ''}"><small>${await window.getString("settings.requestSent")}</small></div>
-              <div class="step ${activeIdx >= 1 ? 'active' : ''}"><small>${await window.getString("settings.inReview")}</small></div>
-              <div class="step ${activeIdx >= 2 ? 'active' : ''}"><small>${status === 'rejected' ? await window.getString("settings.rejected") : await window.getString("settings.published")}</small></div>
-            </div>
-            ${status === 'pending' ? `<p class="b-themes-status-theme-text">${await window.getString("settings.themeBeingReviewed")}</p>` : ''}
-            ${status === 'approved' ? `<p class="has-text-success b-themes-status-theme-text">${await window.getString("settings.congratulationsPublished")}</p>` : ''}
-            ${status === 'rejected' ? `<article class="message is-warning mt-4" style="padding:10px"><div class="message-body"><strong>${await window.getString("settings.rejectionReason")}</strong><br>${rejectReason || await window.getString("settings.notSpecified")}</div></article>` : ''}
-          </section>
-          <footer class="modal-card-foot" style="justify-content:flex-end">
-            ${(status === 'rejected' || status === 'draft') ? `<button class="button is-info is-outlined" id="btnReSubmit"><i class="fa-solid fa-paper-plane mr-1"></i>${await window.getString("settings.resubmitForReview")}</button>` : ''}
-            <button class="button cancel is-danger is-outlined" id="btnUnpublish">${await window.getString("settings.unpublish")}</button>
-            <button class="button" id="btnClose">${await window.getString("settings.close")}</button>
-          </footer>
-        </div>
-      </div>`;
-
-      document.body.appendChild(wrap);
-
-      wrap.querySelector('#btnClose')?.addEventListener('click', () => wrap.remove());
-
-      wrap.querySelector('#btnUnpublish')?.addEventListener('click', async () => {
-        try {
-          await ModalAsk.ask({
-            title: await window.getString("settings.unpublishTheme"),
-            text: await window.getString("settings.sureUnpublishTheme"),
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: await window.getString("settings.unpublish"),
-            cancelButtonText: await window.getString("settings.cancel"),
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            preConfirm: () => true
-          });
-
-          await api('/unpublish', { id: THEME_ID });
-
-          await ModalAsk.ask({
-            title: 'Despublicado ✔',
-            text: 'Tu tema ha sido despublicado',
-            icon: 'success',
-            confirmButtonText: 'Aceptar'
-          });
-
-          wrap.remove();
-          await render();
-          if (editing?._id === THEME_ID) {
-            editing.isPublic = false;
-            editing.reviewStatus = 'draft';
-            setActive('');
-            persist(editing);
-          }
-        } catch (err) {
-          if (err === 'cancelled') return;
-          console.error('unpublish', err);
-          ModalAsk.ask({
-            title: await window.getString("settings.errorUnpublishTheme"),
-            text: await window.getString("settings.couldNotUnpublishTheme"),
-            icon: 'error',
-            confirmButtonText: await window.getString("settings.accept")
-          });
-        }
-      });
-
-      wrap.querySelector('#btnReSubmit')?.addEventListener('click', async () => {
-        try {
-          await api('/requestReview', { id: THEME_ID });
-          ModalAsk.ask({
-            title: await window.getString("settings.resubmittedSuccess"),
-            text: await window.getString("settings.themeResubmittedToReview"),
-            icon: 'success',
-            confirmButtonText: await window.getString("settings.accept")
-          });
-          wrap.remove();
-          await render();
-        } catch {
-          console.error('requestReview', err);
-          ModalAsk.ask({
-            title: await window.getString("settings.errorResubmittingTheme"),
-            text: await window.getString("settings.couldNotResubmitTheme"),
-            icon: 'error',
-            confirmButtonText: await window.getString("settings.accept")
-          });
-        }
-      });
-    }
-
     const render = async () => {
       themeList.innerHTML = '';
       const active = getActive();
@@ -2052,24 +1809,12 @@ class Settings {
 
         const isDefaultTheme = t._id === 'battly-default-theme' || t.isDefault;
 
-        let iconHTML = '';
-        if (isDefaultTheme) {
-
-          iconHTML = `<i class="fa-solid fa-shield-halved" style="color:#28a745" title="Tema del sistema"></i>`;
-        } else {
-          iconHTML = `<i class="fa-solid fa-paper-plane publish" title="${await window.getString("settings.sendToReviewTooltip")}"></i>`;
-          if (t.reviewStatus === 'pending') iconHTML = `<i class="fa-solid fa-circle-info publish" style="color:#3ea6ff" title="${await window.getString("settings.inReviewTooltip")}"></i>`;
-          if (t.reviewStatus === 'rejected') iconHTML = `<i class="fa-solid fa-triangle-exclamation publish" style="color:#ffc107" title="${await window.getString("settings.rejectedTooltip")}"></i>`;
-          if (t.isPublic) iconHTML = `<i class="fa-solid fa-eye publish" title="${await window.getString("settings.publishedTooltip")}"></i>`;
-        }
-
         card.innerHTML = `
         <span class="theme-card-title">${t.name}${t.animated ? ` <span title="${await window.getString("settings.animatedBackgroundTooltip")}" style="font-size:12px;color:#66d1ff">(GIF)</span>` : ''}${isDefaultTheme ? ' <span style="font-size:12px;color:#28a745">(Sistema)</span>' : ''}</span>
         <div class="card-actions">
           ${isDefaultTheme ? '' : `<i class="fa-solid fa-pen-to-square edit" title="${await window.getString("settings.editTooltip")}"></i>`}
           ${isDefaultTheme ? '' : `<i class="fa-solid fa-trash delete" title="${await window.getString("settings.deleteTooltip")}"></i>`}
           ${isDefaultTheme ? '' : `<i class="fa-solid fa-share share-theme" title="Compartir tema" style="color:#4ecdc4;"></i>`}
-          ${iconHTML}
         </div>`;
 
         const act = card.querySelector('.card-actions');
@@ -2147,51 +1892,6 @@ class Settings {
           }
         }
 
-        const publishBtn = card.querySelector('.publish');
-        if (publishBtn && !isDefaultTheme) {
-          publishBtn.onclick = async () => {
-            if (!t.isPublic && (!t.reviewStatus || t.reviewStatus === 'draft')) {
-              try {
-                await api('/requestReview', { id: t._id });
-                ModalAsk.ask({
-                  title: await window.getString("settings.sentForReview"),
-                  text: await window.getString("settings.themeSentForReview"),
-                  icon: 'success',
-                  confirmButtonText: await window.getString("settings.accept"),
-                  confirmButtonColor: '#3085d6'
-                });
-                t.reviewStatus = 'requested';
-                await render();
-              } catch {
-                console.error('requestReview', err);
-                ModalAsk.ask({
-                  title: await window.getString("settings.errorSending"),
-                  text: await window.getString("settings.couldNotSendThemeForReview"),
-                  icon: 'error',
-                  confirmButtonText: await window.getString("settings.accept"),
-                  confirmButtonColor: '#3085d6'
-                });
-              }
-            } else {
-              try {
-                const { status, reason } = await api('/reviewStatus', { id: t._id });
-                t.reviewStatus = status;
-                await render();
-                await buildReviewModal(t, status, reason);
-              } catch {
-                console.error('reviewStatus', err);
-                ModalAsk.ask({
-                  title: await window.getString("settings.errorCheckingStatus"),
-                  text: await window.getString("settings.couldNotCheckThemeStatus"),
-                  icon: 'error',
-                  confirmButtonText: await window.getString("settings.accept"),
-                  confirmButtonColor: '#3085d6'
-                });
-              }
-            }
-          };
-        }
-
         themeList.appendChild(card);
       }
     };
@@ -2203,18 +1903,11 @@ class Settings {
       await setValue('theme-opacity-bottom-bar', t.footerOpacity);
       await setValue('background-loading-screen-color', t.loadingColor);
       await setValue('sonido-inicio', t.startupSound);
-      if (t.background && (!t.animated || isPremium)) {
-        await setValue('background-img', t.background);
-      }
+      await setValue('background-img', t.background || null);
+      await setValue('background-video', t.backgroundVideo || null);
     };
 
     async function refreshDOM(t = {}) {
-
-      let isPremium = false;
-      try {
-        const acc = await (window?.database?.getSelectedAccount?.() ?? Promise.resolve(null));
-        isPremium = !!acc?.premium;
-      } catch (_) { }
 
       const color = t.btnColor ?? (await getValue("theme-color")) ?? "#3e8ed0";
       const colorHover = t.btnHoverColor ?? (await getValue("theme-color-hover")) ?? tinycolor(color).darken(10).toString();
@@ -2338,19 +2031,9 @@ class Settings {
     }
 
     const applyTheme = async t => {
-      if (t.animated && !isPremium) {
-        ModalAsk.ask({
-          title: await window.getString("settings.premiumFunctionTitle"),
-          text: await window.getString("settings.cantSetAnimatedNonPremium"),
-          icon: 'info',
-          confirmButtonText: await window.getString("settings.accept"),
-          confirmButtonColor: '#3085d6'
-        });
-        return;
-      }
       setActive(t._id);
-      refreshDOM(t);
-      persist(t);
+      await persist(t);
+      await refreshDOM(t);
       await render();
     };
 
@@ -2565,7 +2248,7 @@ class Settings {
                 </div>
                 <div style="text-align:right;">
                   <div style="font-size:14px; color:#4ecdc4;">
-                    <i class="fa-solid fa-eye" style="margin-right:4px;"></i>${share.accessCount} vistas
+                    <i class="fa-solid fa-eye" style="margin-right:4px;"></i>${share.exportCount} códigos generados
                   </div>
                 </div>
               </div>
@@ -2613,7 +2296,7 @@ class Settings {
                 </button>
               </div>
             </div>
-            <p class="help" style="color:#666;">Este enlace expira el ${new Date(result.expiresAt).toLocaleDateString()}</p>
+            <p class="help" style="color:#666;">Código de tema: puedes importarlo en otra instalación.</p>
           `,
           icon: 'success',
           confirmButtonText: 'Cerrar',
@@ -2690,7 +2373,7 @@ class Settings {
           footerColor: '#0a0a0a',
           footerOpacity: 0.85,
           loadingColor: '#000000',
-          startupSound: 'Battle',
+          startupSound: 'start',
           background: null,
           animated: false
         });
@@ -2701,7 +2384,7 @@ class Settings {
           footerColor: '#0a0a0a',
           footerOpacity: 0.85,
           loadingColor: '#000000',
-          startupSound: 'Battle',
+          startupSound: 'start',
           background: null,
           animated: false,
           isPublic: false,
@@ -2981,6 +2664,12 @@ class Settings {
         </section>
       </div> `;
       document.body.appendChild(modal);
+      const { loadProfile } = require('./assets/js/utils/personalization');
+      const profile = await loadProfile(uuid);
+      Settings.prototype.updatePreview({
+        previewCard: modal.querySelector('.main-user-profile'),
+        previewUsername: modal.querySelector('.main-user-profile-right h1')
+      }, profile, 'https://api.battlylauncher.com');
 
       let skin_container = document.getElementById("skin_container");
       let mainUserProfile = document.querySelector(".main-user-profile");
@@ -3021,9 +2710,6 @@ class Settings {
         </div> `;
       }
 
-      if (userData.premium) {
-        userTitle.innerHTML += `<i class="fa-solid fa-fire" title="Usuario Premium" style="color: gold; font-size: 35px; transform: translateY(12px);"></i>`;
-      }
 
       const close = () => modal.remove();
       modal.querySelector('.modal-background').addEventListener('click', close);
@@ -3040,448 +2726,16 @@ class Settings {
       console.log('Abrir personalizador de skin para:', uuid);
     }
 
-    let account = await this.database?.getSelectedAccount();
-    let isPremium = account?.premium;
-    if (isPremium) {
-      document.getElementById("background-btn").style.display = "";
-      document.getElementById("launchboost-panel").style.display = "block";
-    } else {
-      document.getElementById("background-btn").style.display = "none";
-      document.getElementById("launchboost-panel").style.display = "none";
-    }
+    document.getElementById("background-btn").style.display = "";
+    document.getElementById("launchboost-panel").style.display = "block";
   }
 
 
-  async createInteractivePremiumTour() {
-    const features = [
-      {
-        title: "🎉 ¡Felicidades!",
-        subtitle: "Ahora eres usuario Premium de Battly",
-        description: "Si estás leyendo esto es porque eres usuario Plus (premium) de Battly (o habrás usado truquitos para ver este mensaje). Ahora podrás disfrutar de todas tus ventajas en Battly como:",
-        icon: "🎉",
-        color: "#4ecdc4",
-        animation: "bounce"
-      },
-      {
-        title: "Fondo animado en Battly",
-        subtitle: "Videos de fondo personalizados",
-        description: "Exactamente, normalmente podías añadir una imagen de fondo, pero al ser premium podrás añadir un fondo animado (un video que se repite).",
-        icon: "🎬",
-        color: "#ff6b6b",
-        animation: "fadeInUp",
-        demo: "background"
-      },
-      {
-        title: "Skins HD + Capas Custom",
-        subtitle: "Personalización avanzada de tu avatar",
-        description: "Normalmente, siendo usuario normal, sólo podías subir tu skin y elegir entre las 4 capas que te da Battly, pero ahora podrás añadir una skin HD y tu propia capa.",
-        icon: "👤",
-        color: "#95e1d3",
-        animation: "fadeInLeft",
-        demo: "skin"
-      },
-      {
-        title: "Insignia única en Battly",
-        subtitle: "Destaca en la comunidad",
-        description: "Cuando acabes de leer esto, mira tu perfil, habrá aparecido un 👑, eso significa que eres premium.",
-        icon: "👑",
-        color: "#fce38a",
-        animation: "fadeInRight",
-        demo: "badge"
-      },
-      {
-        title: "Rol en el servidor de Discord",
-        subtitle: "Acceso exclusivo en Discord",
-        description: "Si eres premium, tendrás un rol especial en el servidor de Discord de Battly.",
-        icon: "💬",
-        color: "#a8e6cf",
-        animation: "fadeInDown",
-        demo: "discord"
-      }
-    ];
-
-    let currentStep = 0;
-
-    const tourContainer = document.createElement('div');
-    tourContainer.className = 'premium-tour-container';
-    tourContainer.innerHTML = `
-        < style >
-        .premium - tour - container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100 %;
-        height: 100 %;
-        background: linear - gradient(135deg, #667eea 0 %, #764ba2 100 %);
-        z - index: 9999;
-        display: flex;
-        align - items: center;
-        justify - content: center;
-        font - family: 'Segoe UI', Tahoma, Geneva, Verdana, sans - serif;
-        overflow: hidden;
-      }
-
-        .tour - card {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop - filter: blur(20px);
-        border - radius: 20px;
-        padding: 40px;
-        max - width: 600px;
-        width: 90 %;
-        text - align: center;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box - shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        transform: scale(0.8);
-        opacity: 0;
-        transition: all 0.5s cubic - bezier(0.175, 0.885, 0.32, 1.275);
-      }
-
-        .tour - card.active {
-        transform: scale(1);
-        opacity: 1;
-      }
-
-        .feature - icon {
-        font - size: 4rem;
-        margin - bottom: 20px;
-        display: block;
-        animation: pulse 2s infinite;
-      }
-
-        .feature - title {
-        font - size: 2.5rem;
-        font - weight: 700;
-        color: #fff;
-        margin - bottom: 10px;
-        text - shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-      }
-
-        .feature - subtitle {
-        font - size: 1.2rem;
-        color: rgba(255, 255, 255, 0.8);
-        margin - bottom: 20px;
-        font - weight: 300;
-      }
-
-        .feature - description {
-        font - size: 1.1rem;
-        color: rgba(255, 255, 255, 0.9);
-        line - height: 1.6;
-        margin - bottom: 30px;
-      }
-
-        .tour - progress {
-        display: flex;
-        justify - content: center;
-        gap: 10px;
-        margin - bottom: 30px;
-      }
-
-        .progress - dot {
-        width: 12px;
-        height: 12px;
-        border - radius: 50 %;
-        background: rgba(255, 255, 255, 0.3);
-        transition: all 0.3s ease;
-        cursor: pointer;
-      }
-
-        .progress - dot.active {
-        background: #fff;
-        transform: scale(1.2);
-        box - shadow: 0 0 15px rgba(255, 255, 255, 0.6);
-      }
-
-        .tour - navigation {
-        display: flex;
-        justify - content: space - between;
-        align - items: center;
-        gap: 20px;
-      }
-
-        .nav - button {
-        padding: 12px 24px;
-        border: none;
-        border - radius: 25px;
-        font - size: 1rem;
-        font - weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        background: rgba(255, 255, 255, 0.2);
-        color: #fff;
-        backdrop - filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-      }
-
-        .nav - button:hover {
-        background: rgba(255, 255, 255, 0.3);
-        transform: translateY(-2px);
-        box - shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      }
-
-        .nav - button:disabled {
-        opacity: 0.5;
-        cursor: not - allowed;
-        transform: none;
-      }
-
-        .nav - button.primary {
-        background: linear - gradient(45deg, #ff6b6b, #ee5a24);
-        border: none;
-      }
-
-        .nav - button.primary:hover {
-        background: linear - gradient(45deg, #ee5a24, #ff6b6b);
-      }
-
-        .demo - area {
-        margin: 20px 0;
-        padding: 20px;
-        background: rgba(0, 0, 0, 0.2);
-        border - radius: 15px;
-        min - height: 100px;
-        display: flex;
-        align - items: center;
-        justify - content: center;
-      }
-
-        .background - demo {
-        width: 100 %;
-        height: 80px;
-        background: linear - gradient(45deg, #667eea, #764ba2);
-        border - radius: 10px;
-        position: relative;
-        overflow: hidden;
-      }
-
-        .background - demo::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100 %;
-        width: 100 %;
-        height: 100 %;
-        background: linear - gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-        animation: shine 2s infinite;
-      }
-
-        .skin - demo {
-        width: 80px;
-        height: 80px;
-        background: #8b4513;
-        border - radius: 10px;
-        position: relative;
-        margin: 0 auto;
-        box - shadow: 0 0 20px rgba(139, 69, 19, 0.5);
-      }
-
-        .skin - demo::after {
-        content: 'HD';
-        position: absolute;
-        top: -10px;
-        right: -10px;
-        background: #ff6b6b;
-        color: white;
-        padding: 2px 6px;
-        border - radius: 5px;
-        font - size: 0.8rem;
-        font - weight: bold;
-      }
-
-        .badge - demo {
-        font - size: 3rem;
-        animation: glow 2s ease -in -out infinite alternate;
-      }
-
-        .discord - demo {
-        display: flex;
-        align - items: center;
-        gap: 10px;
-        justify - content: center;
-      }
-
-        .discord - logo {
-        width: 40px;
-        height: 40px;
-        background: #5865f2;
-        border - radius: 50 %;
-        display: flex;
-        align - items: center;
-        justify - content: center;
-        color: white;
-        font - weight: bold;
-      }
-
-      @keyframes pulse {
-        0 %, 100 % { transform: scale(1); }
-        50 % { transform: scale(1.1); }
-      }
-
-      @keyframes shine {
-        0 % { left: -100 %; }
-        100 % { left: 100 %; }
-      }
-
-      @keyframes glow {
-          from { text - shadow: 0 0 10px #fce38a, 0 0 20px #fce38a, 0 0 30px #fce38a; }
-          to { text - shadow: 0 0 20px #fce38a, 0 0 30px #fce38a, 0 0 40px #fce38a; }
-      }
-
-      @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
-      }
-
-      @keyframes fadeInLeft {
-          from { opacity: 0; transform: translateX(-30px); }
-          to { opacity: 1; transform: translateX(0); }
-      }
-
-      @keyframes fadeInRight {
-          from { opacity: 0; transform: translateX(30px); }
-          to { opacity: 1; transform: translateX(0); }
-      }
-
-      @keyframes fadeInDown {
-          from { opacity: 0; transform: translateY(-30px); }
-          to { opacity: 1; transform: translateY(0); }
-      }
-
-      @keyframes bounce {
-        0 %, 20 %, 53 %, 80 %, 100 % { transform: translate3d(0, 0, 0); }
-        40 %, 43 % { transform: translate3d(0, -30px, 0); }
-        70 % { transform: translate3d(0, -15px, 0); }
-        90 % { transform: translate3d(0, -4px, 0); }
-      }
-      </style >
-
-        <div class="tour-card active">
-          <div class="tour-progress">
-            ${features.map((_, index) => `<div class="progress-dot ${index === 0 ? 'active' : ''}" data-step="${index}"></div>`).join('')}
-          </div>
-
-          <div class="feature-content">
-            <span class="feature-icon">${features[0].icon}</span>
-            <h1 class="feature-title">${features[0].title}</h1>
-            <h2 class="feature-subtitle">${features[0].subtitle}</h2>
-            <p class="feature-description">${features[0].description}</p>
-            <div class="demo-area" id="demo-area" style="display: none;"></div>
-          </div>
-
-          <div class="tour-navigation">
-            <button class="nav-button" id="prev-btn" disabled>Anterior</button>
-            <button class="nav-button" id="skip-btn">Saltar Tour</button>
-            <button class="nav-button primary" id="next-btn">Siguiente</button>
-          </div>
-        </div>
-      `;
-
-    document.body.appendChild(tourContainer);
-
-    const tourCard = tourContainer.querySelector('.tour-card');
-    const progressDots = tourContainer.querySelectorAll('.progress-dot');
-    const featureIcon = tourContainer.querySelector('.feature-icon');
-    const featureTitle = tourContainer.querySelector('.feature-title');
-    const featureSubtitle = tourContainer.querySelector('.feature-subtitle');
-    const featureDescription = tourContainer.querySelector('.feature-description');
-    const demoArea = tourContainer.querySelector('#demo-area');
-    const prevBtn = tourContainer.querySelector('#prev-btn');
-    const nextBtn = tourContainer.querySelector('#next-btn');
-    const skipBtn = tourContainer.querySelector('#skip-btn');
-
-    const updateContent = async (step) => {
-      const feature = features[step];
-
-      tourCard.style.transform = 'scale(0.9)';
-      tourCard.style.opacity = '0.7';
-
-      setTimeout(() => {
-
-        featureIcon.textContent = feature.icon;
-        featureTitle.textContent = feature.title;
-        featureSubtitle.textContent = feature.subtitle;
-        featureDescription.textContent = feature.description;
-
-        progressDots.forEach((dot, index) => {
-          dot.classList.toggle('active', index === step);
-        });
-
-        prevBtn.disabled = step === 0;
-        nextBtn.textContent = step === features.length - 1 ? 'Finalizar' : 'Siguiente';
-
-        if (feature.demo) {
-          demoArea.style.display = 'block';
-          demoArea.innerHTML = getDemoContent(feature.demo);
-        } else {
-          demoArea.style.display = 'none';
-        }
-
-        tourCard.style.transform = 'scale(1)';
-        tourCard.style.opacity = '1';
-
-        featureIcon.style.animation = `${feature.animation || 'pulse'} 1s ease - out`;
-
-      }, 200);
-    };
-
-    const getDemoContent = (demoType) => {
-      switch (demoType) {
-        case 'background':
-          return '<div class="background-demo"></div>';
-        case 'skin':
-          return '<div class="skin-demo"></div>';
-        case 'badge':
-          return '<div class="badge-demo">👑</div>';
-        case 'discord':
-          return '<div class="discord-demo"><div class="discord-logo">D</div><span style="color: #fff;">Rol Premium</span></div>';
-        default:
-          return '';
-      }
-    };
-
-    nextBtn.addEventListener('click', async () => {
-      if (currentStep < features.length - 1) {
-        currentStep++;
-        await updateContent(currentStep);
-      } else {
-
-        tourContainer.style.transform = 'scale(0.8)';
-        tourContainer.style.opacity = '0';
-        setTimeout(() => {
-          document.body.removeChild(tourContainer);
-        }, 500);
-      }
-    });
-
-    prevBtn.addEventListener('click', async () => {
-      if (currentStep > 0) {
-        currentStep--;
-        await updateContent(currentStep);
-      }
-    });
-
-    skipBtn.addEventListener('click', () => {
-      tourContainer.style.transform = 'scale(0.8)';
-      tourContainer.style.opacity = '0';
-      setTimeout(() => {
-        document.body.removeChild(tourContainer);
-      }, 500);
-    });
-
-    progressDots.forEach((dot, index) => {
-      dot.addEventListener('click', async () => {
-        currentStep = index;
-        await updateContent(currentStep);
-      });
-    });
-
-    setTimeout(() => {
-      tourCard.classList.add('active');
-    }, 100);
-  }
 
   async openProfileCustomizationModal(uuid) {
-    const modal = document.getElementById('b-profile-customization-modal');
+    const previous = document.getElementById('b-profile-customization-modal');
+    const modal = previous.cloneNode(true);
+    previous.replaceWith(modal);
     const closeBtn = document.getElementById('b-profile-modal-close');
     const background = modal.querySelector('.modal-background');
 
@@ -3510,7 +2764,6 @@ class Settings {
       nameColor: '#ffffff',
       backgroundColor: '#2c2f33',
       backgroundImage: null,
-      isPremium: false
     };
 
     let originalProfile = { ...currentProfile };
@@ -3524,10 +2777,9 @@ class Settings {
       return;
     }
 
-    const token = account.token || localStorage.getItem('battly_token');
-    const username = account.name || localStorage.getItem('battly_username');
-    const isPremium = account.premium || false;
-    currentProfile.isPremium = isPremium;
+    const token = null;
+    const username = account.name || '';
+    currentProfile.accountId = uuid;
 
     elements.tabs = {
       border: document.getElementById('custom-tab-border'),
@@ -3574,7 +2826,7 @@ class Settings {
 
     this.initProfileEventListeners(elements, currentProfile, originalProfile, baseURL, token, username);
 
-    await this.loadUserProfile(elements, currentProfile, originalProfile, baseURL, token, username, isPremium, uuid);
+    await this.loadUserProfile(elements, currentProfile, originalProfile, baseURL, token, username, uuid);
   }
 
   initNewModalFunctionality(elements, currentProfile) {
@@ -3627,7 +2879,7 @@ class Settings {
         nameColor: '#ffffff',
         backgroundColor: '#2c2f33'
       },
-      premium: {
+      sunset: {
         borderColor: '#ff6b6b',
         borderStyle: 'solid',
         borderWidth: 4,
@@ -3767,30 +3019,13 @@ class Settings {
     });
 
     elements.bgImageLabel.addEventListener('click', () => {
-      if (!currentProfile.isPremium) {
-        new Alert().ShowAlert({
-          icon: 'warning',
-          title: 'Solo usuarios Battly+',
-          text: 'Solo usuarios Battly+ pueden usar imágenes de fondo'
-        });
-      } else {
         elements.bgImageInput.click();
-      }
     });
 
     elements.bgImageInput.addEventListener('change', async (e) => {
       const file = e.target.files[0];
       if (!file) return;
 
-      if (!currentProfile.isPremium) {
-        new Alert().ShowAlert({
-          icon: 'warning',
-          title: 'Solo usuarios Battly+',
-          text: 'Solo usuarios Battly+ pueden usar imágenes de fondo'
-        });
-        e.target.value = '';
-        return;
-      }
 
       if (file.size > 5 * 1024 * 1024) {
         new Alert().ShowAlert({
@@ -3825,60 +3060,14 @@ class Settings {
   }
 
 
-  async loadUserProfile(elements, currentProfile, originalProfile, baseURL, token, username, isPremium, uuid) {
-    try {
-      console.log('Usuario cargado:');
-      console.log(username);
-      console.log(isPremium);
-
-      if (!token || !username) {
-        console.error('No hay sesión activa');
-        return;
-      }
-
-      const response = await fetch(`${baseURL}/api/v2/users/profile/${username}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      const data = await response.json();
-
-      if (data.status === 200 && data.profile) {
-        Object.assign(currentProfile, {
-          ...data.profile,
-          isPremium: isPremium
-        });
-        Object.assign(originalProfile, currentProfile);
-        this.applyProfileToUI(elements, currentProfile, baseURL);
-        this.updatePreview(elements, currentProfile, baseURL);
-        elements.previewUsername.textContent = data.profile.username || username;
-        this.loadUserSkin(username, elements);
-      } else {
-
-        currentProfile.isPremium = isPremium;
-        currentProfile.username = username;
-        elements.previewUsername.textContent = username;
-        this.loadUserSkin(username, elements);
-        this.applyProfileToUI(elements, currentProfile, baseURL);
-        this.updatePreview(elements, currentProfile, baseURL);
-      }
-    } catch (error) {
-      console.error('Error al cargar perfil:');
-
-      console.error(error);
-
-      try {
-        currentProfile.isPremium = isPremium;
-        currentProfile.username = username;
-        elements.previewUsername.textContent = username;
-        elements.previewAvatar.textContent = username.charAt(0).toUpperCase();
-        this.applyProfileToUI(elements, currentProfile, baseURL);
-        this.updatePreview(elements, currentProfile, baseURL);
-      } catch (e) {
-        console.error('Error al cargar cuenta local:');
-        console.error(e);
-      }
-    }
+  async loadUserProfile(elements, currentProfile, originalProfile, baseURL, token, username, uuid) {
+    const { loadProfile } = require('./assets/js/utils/personalization');
+    Object.assign(currentProfile, await loadProfile(uuid), { accountId: uuid, username });
+    Object.assign(originalProfile, currentProfile);
+    elements.previewUsername.textContent = username;
+    this.applyProfileToUI(elements, currentProfile, baseURL);
+    this.updatePreview(elements, currentProfile, baseURL);
+    this.loadUserSkin(username, elements);
   }
 
   applyProfileToUI(elements, currentProfile, baseURL) {
@@ -3894,24 +3083,17 @@ class Settings {
     if (elements.bgColorPicker) elements.bgColorPicker.value = currentProfile.backgroundColor;
     if (elements.bgColorText) elements.bgColorText.value = currentProfile.backgroundColor;
 
-    if (!currentProfile.isPremium) {
-      if (elements.bgImageInput) elements.bgImageInput.disabled = true;
-      if (elements.bgImageLabel) elements.bgImageLabel.classList.add('disabled');
-      const premiumNotice = document.getElementById('premium-notice-bg');
-      if (premiumNotice) premiumNotice.style.display = 'flex';
-    } else {
-      if (elements.bgImageInput) elements.bgImageInput.disabled = false;
-      if (elements.bgImageLabel) elements.bgImageLabel.classList.remove('disabled');
-      const premiumNotice = document.getElementById('premium-notice-bg');
-      if (premiumNotice) premiumNotice.style.display = 'none';
+    if (elements.bgImageInput) elements.bgImageInput.disabled = false;
+    if (elements.bgImageLabel) elements.bgImageLabel.classList.remove('disabled');
 
+      const preview = document.getElementById('current-bg-preview');
+      if (preview) preview.style.display = currentProfile.backgroundImage ? 'block' : 'none';
       if (currentProfile.backgroundImage) {
         const currentBgPreview = document.getElementById('current-bg-preview');
         const currentBgImg = document.getElementById('current-bg-img');
         if (currentBgPreview) currentBgPreview.style.display = 'block';
-        if (currentBgImg) currentBgImg.src = `${baseURL}${currentProfile.backgroundImage} `;
+        if (currentBgImg) currentBgImg.src = /^(data:|https?:|file:)/.test(currentProfile.backgroundImage) ? currentProfile.backgroundImage : `${baseURL}${currentProfile.backgroundImage}`;
       }
-    }
   }
 
   updatePreview(elements, currentProfile, baseURL) {
@@ -3928,7 +3110,7 @@ class Settings {
     }
 
     let bgUrl = null;
-    if (currentProfile.backgroundImage && currentProfile.isPremium) {
+    if (currentProfile.backgroundImage) {
       if (currentProfile.backgroundImage.startsWith('data:image')) {
         bgUrl = currentProfile.backgroundImage;
       } else if (currentProfile.backgroundImage.startsWith('http')) {
@@ -3958,118 +3140,37 @@ class Settings {
     }
   }
 
-  async saveProfile(elements, currentProfile, originalProfile, baseURL, token, username) {
+  async saveProfile(elements, currentProfile, originalProfile, baseURL) {
+    const { saveProfile, readImageFile } = require('./assets/js/utils/personalization');
     try {
       elements.saveBtn.disabled = true;
-      elements.saveBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Guardando...';
-
-      if (elements.bgImageInput.files.length > 0 && currentProfile.isPremium) {
-        const formData = new FormData();
-        formData.append('background', elements.bgImageInput.files[0]);
-
-        const uploadResponse = await fetch(`${baseURL}/api/v2/users/profile/upload-background`, {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${token}`
-          },
-          body: formData
-        });
-
-        const uploadData = await uploadResponse.json();
-
-        if (uploadData.status === 200) {
-          currentProfile.backgroundImage = uploadData.imageUrl;
-        } else {
-          throw new Error(uploadData.message || 'Error al subir imagen');
-        }
-      }
-
-      const response = await fetch(`${baseURL}/api/v2/users/profile`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          borderColor: currentProfile.borderColor,
-          borderStyle: currentProfile.borderStyle,
-          borderWidth: currentProfile.borderWidth,
-          nameColor: currentProfile.nameColor,
-          backgroundColor: currentProfile.backgroundColor,
-          backgroundImage: currentProfile.backgroundImage
-        })
-      });
-
-      const data = await response.json();
-
-      if (data.status === 200) {
-        new Alert().ShowAlert({
-          icon: 'success',
-          title: 'Perfil actualizado',
-          text: '✅ Perfil actualizado correctamente'
-        });
-        Object.assign(originalProfile, currentProfile);
-        elements.bgImageInput.value = '';
-
-        if (data.profile.backgroundImage) {
-          currentProfile.backgroundImage = `${baseURL}${data.profile.backgroundImage} `;
-          document.getElementById('current-bg-preview').style.display = 'block';
-          document.getElementById('current-bg-img').src = currentProfile.backgroundImage;
-        }
-        this.updatePreview(elements, currentProfile, baseURL);
-      } else {
-        throw new Error(data.message || 'Error al guardar');
-      }
+      const file = elements.bgImageInput.files[0];
+      if (file) currentProfile.backgroundImage = await readImageFile(file);
+      await saveProfile(currentProfile.accountId, currentProfile);
+      Object.assign(originalProfile, currentProfile);
+      elements.bgImageInput.value = '';
+      this.applyProfileToUI(elements, currentProfile, baseURL);
+      this.updatePreview(elements, currentProfile, baseURL);
+      new Alert().ShowAlert({ icon: 'success', title: 'Perfil guardado' });
     } catch (error) {
-      console.error('Error al guardar:');
-      console.error(error);
-      new Alert().ShowAlert({
-        icon: 'error',
-        title: 'Error al guardar',
-        text: '❌ Error al guardar los cambios: ' + error.message
-      });
+      new Alert().ShowAlert({ icon: 'error', title: 'Error al guardar', text: error.message });
     } finally {
       elements.saveBtn.disabled = false;
-      const saveText = await window.getString('settings.save');
-      elements.saveBtn.innerHTML = `< i class="fa-solid fa-save" ></i > ${saveText} `;
     }
   }
 
-  async removeBackgroundImage(elements, currentProfile, baseURL, token) {
+  async removeBackgroundImage(elements, currentProfile, baseURL) {
     const confirmDelete = await new Alert().ShowAlert({
-      icon: 'warning',
-      title: '¿Eliminar imagen de fondo?',
-      text: '¿Estás seguro de que quieres eliminar la imagen de fondo?',
-      showCancelButton: true,
-      confirmButtonText: 'Sí, eliminar',
-      cancelButtonText: 'Cancelar'
+      icon: 'warning', title: '¿Eliminar imagen de fondo?', showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar', cancelButtonText: 'Cancelar'
     });
-    if (!confirmDelete.isConfirmed) return;
-
-    try {
-      const response = await fetch(`${baseURL}/api/v2/users/profile/background`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      const data = await response.json();
-
-      if (data.status === 200) {
-        currentProfile.backgroundImage = null;
-        document.getElementById('current-bg-preview').style.display = 'none';
-        this.updatePreview(elements, currentProfile, baseURL);
-        alert('✅ Imagen eliminada correctamente');
-      }
-    } catch (error) {
-      console.error('Error al eliminar imagen:', error);
-      new Alert().ShowAlert({
-        icon: 'error',
-        title: 'Error',
-        text: '❌ Error al eliminar la imagen'
-      });
-    }
+    if (!confirmDelete?.isConfirmed) return;
+    const { saveProfile } = require('./assets/js/utils/personalization');
+    currentProfile.backgroundImage = null;
+    elements.bgImageInput.value = '';
+    await saveProfile(currentProfile.accountId, currentProfile);
+    this.applyProfileToUI(elements, currentProfile, baseURL);
+    this.updatePreview(elements, currentProfile, baseURL);
   }
 
   loadUserSkin(username, elements) {

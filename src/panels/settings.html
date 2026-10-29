@@ -335,7 +335,7 @@
             be used to start your game.</p>
 
         <h2 data-string-id="settings.javaPath">Java Path</h2>
-        <p style="color:#9DA2B0;margin-bottom:1.25rem;" data-string-id="settings.javaPathDescription">Battly uses an
+        <p style="color:#9DA2B0;margin-bottom:1.25rem;" data-string-id="settings.javaPathDescription">Floppy uses an
             integrated version of Java (official). You can specify a different one if you need it.</p>
 
         <div class="b-settings-flex" style="align-items:center">
@@ -1116,47 +1116,6 @@
                     transform: translateY(-1px);
                 }
 
-                .premium-badge {
-                    background: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
-                    color: #1a1d29;
-                    padding: 4px 10px;
-                    border-radius: 12px;
-                    font-size: 10px;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 0.5px;
-                    display: inline-block;
-                    margin-left: 8px;
-                    box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
-                    border: 1px solid rgba(255, 215, 0, 0.3);
-                    animation: premiumGlow 2s ease-in-out infinite alternate;
-                }
-
-                @keyframes premiumGlow {
-                    from {
-                        box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
-                    }
-
-                    to {
-                        box-shadow: 0 2px 8px rgba(255, 215, 0, 0.6);
-                    }
-                }
-
-                .premium-notice {
-                    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
-                    border: 2px solid rgba(255, 215, 0, 0.3);
-                    color: #ffd700;
-                    padding: 15px 20px;
-                    border-radius: 12px;
-                    font-size: 14px;
-                    display: flex;
-                    align-items: center;
-                    gap: 12px;
-                    margin-top: 12px;
-                    font-weight: 500;
-                    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.1);
-                }
-
                 .current-image-display {
                     margin-top: 15px;
                     border-radius: 12px;
@@ -1409,7 +1368,6 @@
                                 <div class="control-label">
                                     <i class="fa-solid fa-upload"></i>
                                     <span data-string-id="settings.backgroundImage">Background Image</span>
-                                    <span class="premium-badge" id="premium-badge-bg">BATTLY+</span>
                                 </div>
                                 <div class="file-upload-area" id="bg-image-label">
                                     <i class="fa-solid fa-upload upload-icon"></i>
@@ -1417,11 +1375,6 @@
                                     <div class="upload-subtext" data-string-id="settings.maxSize">Max. 5MB • PNG, JPG,
                                         GIF</div>
                                     <input type="file" id="bg-image-input" accept="image/*" style="display: none;">
-                                </div>
-                                <div class="premium-notice" id="premium-notice-bg" style="display: none;">
-                                    <i class="fa-solid fa-crown"></i>
-                                    <span data-string-id="settings.backgroundImagesOnlyBattlyPlus">Background images are
-                                        only available for Battly+ users</span>
                                 </div>
                                 <div class="current-image-display" id="current-bg-preview" style="display: none;">
                                     <img id="current-bg-img" src="" data-string-id-alt="settings.currentBackground"
@@ -1516,7 +1469,7 @@
             <label class="container-optifine" style="width:100%; align-items:center; gap:10px;">
                 <input type="checkbox" id="b-auto-ram-toggle">
                 <div class="checkmark"></div>
-                <span style="font-weight:700" data-string-id="settings.useRecommendedRam">Use Battly recommended
+                <span style="font-weight:700" data-string-id="settings.useRecommendedRam">Use Floppy recommended
                     RAM</span>
             </label>
 
@@ -1533,7 +1486,7 @@
     </section>
 
     <section id="b-settings-panel-launcher" class="b-settings-panel">
-        <p data-string-id="settings.configureBattlySettings">Configure Battly general settings.</p>
+        <p data-string-id="settings.configureBattlySettings">Configure Floppy general settings.</p>
 
         <fieldset class="b-settings-flex">
             <legend>
@@ -1541,10 +1494,10 @@
             </legend>
             <label class="b-settings-radio"><input type="radio" name="hide" id="launcher-close" checked><span
                     data-string-id="settings.hideBattlyAfterStarting">Hide
-                    Battly after
+                    Floppy after
                     starting</span></label>
             <label class="b-settings-radio"><input type="radio" name="hide" id="launcher-open"><span
-                    data-string-id="settings.keepBattlyOpen">Keep Battly
+                    data-string-id="settings.keepBattlyOpen">Keep Floppy
                     open</span></label>
         </fieldset>
 
@@ -1563,7 +1516,7 @@
                 data-string-id="settings.autoSyncDescription">
                 When enabled, your worlds will automatically back up to Google Drive each time you close
                 Minecraft.
-                Battly will stay in the background until the copy is complete and will notify you when finished.
+                Floppy will stay in the background until the copy is complete and will notify you when finished.
             </p>
         </fieldset>
 
@@ -1595,7 +1548,7 @@
         </fieldset>
 
         <div id="launchboost-panel" style="width: 100%;">
-            <span id="launchboost_settings_information" style="font-size: 20px; font-weight: 700;">Battly Launch
+            <span id="launchboost_settings_information" style="font-size: 20px; font-weight: 700;">Floppy Launch
                 Boost™</span>
             <br>
             <div style="display: flex; gap: 10px;">
@@ -1613,7 +1566,7 @@
     </section>
 
     <section id="b-settings-panel-tema" class="b-settings-panel">
-        <p data-string-id="settings.themeDescription">Personaliza Battly a tu gusto eligiendo un tema o creando uno
+        <p data-string-id="settings.themeDescription">Personaliza Floppy a tu gusto eligiendo un tema o creando uno
             nuevo.</p>
         <div id="themeList" class="theme-list mb-5"></div>
         <div class="b-settings-flex" style="justify-content:center">
@@ -1629,7 +1582,7 @@
     </section>
 
     <section id="b-settings-panel-fondo" class="b-settings-panel">
-        <p data-string-id="settings.videoBackgroundDescription">As a Battly+ member, you can choose a background video
+        <p data-string-id="settings.videoBackgroundDescription">You can choose a background video
             here.</p>
         <button class="b-settings-btn" id="resize-background-select" data-string-id="settings.selectVideo">Select
             video</button>

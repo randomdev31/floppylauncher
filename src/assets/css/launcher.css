@@ -559,7 +559,9 @@ i.margin {
   -webkit-app-region: drag;
 }
 
-.titlebar * {
+.titlebar .window-controls,
+.titlebar button,
+.titlebar #disable-music {
   -webkit-app-region: no-drag;
 }
 

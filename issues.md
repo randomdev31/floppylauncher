@@ -1,4 +1,4 @@
-# Reporte de Problemas en Battly Launcher
+# Reporte de Problemas en Floppy Launcher
 
 ¡Gracias por ayudarnos a mejorar Battly! Si has encontrado un problema, sigue estos pasos para reportarlo y ayudarnos a solucionarlo lo antes posible.
 
@@ -26,7 +26,7 @@ Si el problema no ha sido reportado, sigue estos pasos para crear un nuevo _issu
        1. …
        2. …
        3. …
-   - **Sistema Operativo y Versión de Battly Launcher**: Incluye la información sobre tu sistema (ej., Windows 10, versión de Battly Launcher 1.2.0).
+   - **Sistema Operativo y Versión de Floppy Launcher**: Incluye la información sobre tu sistema (ej., Windows 10, versión de Floppy Launcher 1.2.0).
    - **Capturas de Pantalla / Logs**: Si es posible, agrega capturas de pantalla o adjunta archivos de registro que puedan ayudar a entender el problema.
 
 ## Paso 3: Etiquetas y Seguimiento
@@ -37,5 +37,5 @@ Una vez creado el _issue_:
 
 ## ¡Gracias por tu Colaboración!
 
-Tu reporte es valioso para nosotros y contribuye a mejorar Battly Launcher. Apreciamos tu tiempo y esfuerzo al brindarnos la información necesaria para resolver los problemas.
+Tu reporte es valioso para nosotros y contribuye a mejorar Floppy Launcher. Apreciamos tu tiempo y esfuerzo al brindarnos la información necesaria para resolver los problemas.
 

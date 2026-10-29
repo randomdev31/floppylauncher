@@ -204,7 +204,7 @@ class CrashReport {
                                 BattlyAutoFix.style.color = "#fff";
                                 BattlyAutoFix.style.fontSize = "20px";
                                 BattlyAutoFix.style.fontWeight = "700";
-                                BattlyAutoFix.innerHTML = `Battly <span style="color: #3e8ed0">AutoFix</span>`;
+                                BattlyAutoFix.innerHTML = `Floppy <span style="color: #3e8ed0">AutoFix</span>`;
 
                                 const errorTitle = document.createElement("h1");
                                 errorTitle.style.color = "#fff";

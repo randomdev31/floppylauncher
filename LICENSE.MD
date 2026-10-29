@@ -2,7 +2,7 @@ CONTRATO DE LICENCIA DE USUARIO FINAL (EULA) DEL BATTLY LAUNCHER
 
 IMPORTANTE: LEE DETENIDAMENTE ANTES DE INSTALAR O USAR EL SOFTWARE.
 
-Este Contrato de Licencia del Usuario Final ("EULA", por sus siglas en inglés) constituye un acuerdo legalmente vinculante entre usted ("Usuario") y TECNO BROS ("Creador"). Al descargar, instalar, acceder o utilizar el Battly Launcher ("Software"), usted acepta cumplir con todos los términos y condiciones establecidos en este EULA. Si no está de acuerdo con estos términos, no descargue, instale, acceda o utilice el Software.
+Este Contrato de Licencia del Usuario Final ("EULA", por sus siglas en inglés) constituye un acuerdo legalmente vinculante entre usted ("Usuario") y TECNO BROS ("Creador"). Al descargar, instalar, acceder o utilizar el Floppy Launcher ("Software"), usted acepta cumplir con todos los términos y condiciones establecidos en este EULA. Si no está de acuerdo con estos términos, no descargue, instale, acceda o utilice el Software.
 
 1. CONCESIÓN DE LICENCIA
 

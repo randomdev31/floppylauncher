@@ -31,7 +31,7 @@ const LaunchMinecraft = new LoadMinecraft().LaunchMinecraft;
 // Array de datos curiosos aleatorios para mostrar durante la descarga
 const funFacts = [
     "Battly fue creado originalmente solo para que su fundador, Ilyas (1ly4s0), pudiera jugar Minecraft con comodidad y personalización total.",
-    "Tras la caída de varios launchers debido a acusaciones de virus, Battly pasó de ser un proyecto personal a convertirse en un proyecto público seguro y transparente.",
+    "Tras la caída de varios launchers debido a acusaciones de virus, Floppy pasó de ser un proyecto personal a convertirse en un proyecto público seguro y transparente.",
     "El nombre Battly es originario de la palabra 'battle' que significa batalla en inglés, referencia hacia las batallas que se pueden llevar a cabo en Minecraft.",
     "OptiFine es un mod que optimiza Minecraft y añade soporte para texturas HD y shaders avanzados.",
     "Minecraft fue creado originalmente por Markus 'Notch' Persson en 2009.",
@@ -82,7 +82,7 @@ class Download {
         let betas = versionMojangData.filter(v => v.type === "old_beta");
         let alphas = versionMojangData.filter(v => v.type === "old_alpha");
 
-        // Clasificar las versiones de Battly
+        // Clasificar las versiones de Floppy
         let forgeVersions = versionBattlyData.filter(v => v.version.endsWith("-forge"));
         let fabricVersions = versionBattlyData.filter(v => v.version.endsWith("-fabric"));
         let quiltVersions = versionBattlyData.filter(v => v.version.endsWith("-quilt"));
@@ -1795,7 +1795,7 @@ class Download {
                 ui.log(`${downloading} ${client.folderName}…`);
 
                 await new Promise((resolve, reject) => {
-                    https.get(client.downlaodUrl, { headers: { "User-Agent": "BattlyLauncher" } }, res => {
+                    https.get(client.downlaodUrl, { headers: { "User-Agent": "FloppyLauncher" } }, res => {
                         if (res.statusCode !== 200) {
                             return reject(new Error(`${errorDownloading} (${res.statusCode})`));
                         }

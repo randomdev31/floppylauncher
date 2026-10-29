@@ -16,7 +16,7 @@ const path = require("path");
 const { Notification, Menu, Tray } = require("electron");
 
 let dev = process.env.NODE_ENV === "dev";
-app.setAppUserModelId("Battly Launcher");
+app.setAppUserModelId("Floppy Launcher");
 
 const dataDirectory =
   process.env.APPDATA ||
@@ -33,7 +33,7 @@ app.whenReady().then(async () => {
 
   const contextMenu = Menu.buildFromTemplate([
     {
-      label: "Battly Launcher",
+      label: "Floppy Launcher",
       type: "normal",
       icon: path.join(__dirname, "/assets/images/icon15px.png"),
       click: () => {
@@ -43,7 +43,7 @@ app.whenReady().then(async () => {
     },
     { type: "separator" },
     {
-      label: "Abrir carpeta de Battly",
+      label: "Abrir carpeta de Floppy",
       type: "normal",
       click: () => shell.openPath(path.join(dataDirectory, ".battly")),
     },
@@ -58,9 +58,9 @@ app.whenReady().then(async () => {
       click: () => shell.openExternal("https://battlylauncher.com"),
     },
     { type: "separator" },
-    { label: "Cerrar Battly", click: () => app.quit() },
+    { label: "Cerrar Floppy", click: () => app.quit() },
   ]);
-  tray.setToolTip("Battly Launcher");
+  tray.setToolTip("Floppy Launcher");
   tray.setContextMenu(contextMenu);
 
 });

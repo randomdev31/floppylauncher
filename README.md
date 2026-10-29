@@ -1,10 +1,10 @@
-# Battly Launcher / Floppy
+# Floppy Launcher
 
 [![Node.js CI](https://github.com/1ly4s0/battlylauncher/actions/workflows/build.yml/badge.svg)](https://github.com/1ly4s0/battlylauncher/actions/workflows/build.yml)
 
-![BattlyLauncher\_Banner\_Low](https://github.com/1ly4s0/battlylauncher/assets/67460389/2574bdeb-c8bb-47ac-b263-e4bd687494af)
+![FloppyLauncher\_Banner\_Low](https://github.com/1ly4s0/battlylauncher/assets/67460389/2574bdeb-c8bb-47ac-b263-e4bd687494af)
 
-Battly es un launcher de Minecraft para usuarios *premium* y *no-premium*, diseñado para ofrecer una experiencia rápida, moderna y completamente gratuita. Su objetivo es simplificar al máximo el acceso al juego, sin complicaciones y con todas las herramientas esenciales integradas.
+Floppy Launcher es un launcher de Minecraft para usuarios *premium* y *no-premium*, diseñado para ofrecer una experiencia rápida, moderna y completamente gratuita. Su objetivo es simplificar al máximo el acceso al juego, sin complicaciones y con todas las herramientas esenciales integradas.
 
 ## ✨ Características principales
 
@@ -21,12 +21,20 @@ Si tienes ideas, mejoras o encuentras un error, puedes dejar tus sugerencias:
 
 * En los comentarios de este repositorio
 * En el servidor oficial de Discord
-* O enviando un correo a **[sugerencias@battlylauncher.com](mailto:sugerencias@battlylauncher.com) (O al creador del fork: [g4mvblcr8@mozmail.com](mailto:g4mvblcr8@mozmail.com)**
+* O enviando un correo a **[sugerencias@battlylauncher.com](mailto:sugerencias@battlylauncher.com) (O al creador del fork: [g4mvblcr8@mozmail.com](mailto:g4mvblcr8@mozmail.com))**
 
-Tu opinión ayuda a mejorar Battly cada día.
+Tu opinión ayuda a mejorar Floppy Launcher cada día.
 
 ## 📥 Descargas
 
-Puedes obtener la última versión de Battly Launcher desde la web oficial:
+El proyecto original es Battly. Su web de descargas es:
 
 👉 [https://battlylauncher.com/download](https://battlylauncher.com/download)
+
+El projecto fork es Floppy, la pagina de descargas esta en GitHub:
+
+👉 [https://github.com/randomdev31/floppylauncher](https://github.com/randomdev31/floppylauncher)
+
+## Creditos
+
+Solicito cordiales creditos al creador del proyecto original: **Technobros** y a **[1ly4s0](https://github.com/1ly4s0)**

@@ -872,8 +872,8 @@ class Home {
 
         tour.addStep({
             id: "welcome",
-            title: "¡Bienvenido a Battly!",
-            text: "Soy Nivix, tu guía en Battly. Te enseñaré cómo usar Battly en general y aprovechar el 100% de sus funciones.",
+            title: "¡Bienvenido a Floppy!",
+            text: "Soy Nivix, tu guía en Floppy. Te enseñaré cómo usar Floppy en general y aprovechar el 100% de sus funciones.",
             buttons: [
                 {
                     text: "¡Vamos!",
@@ -885,7 +885,7 @@ class Home {
 
         tour.addStep({
             title: "Menú de inicio",
-            text: "Este es el menú de inicio de Battly. Aquí podrás ver las últimas noticias, tus amigos en línea y acceder a cualquier sección de Battly.",
+            text: "Este es el menú de inicio de Floppy. Aquí podrás ver las últimas noticias, tus amigos en línea y acceder a cualquier sección de Floppy.",
             attachTo: {
                 element: ".panel.home",
                 on: "bottom",
@@ -901,7 +901,7 @@ class Home {
 
         tour.addStep({
             title: await window.getString('tour.newsTitle') || "News",
-            text: await window.getString('tour.newsText') || "Here you can see the latest Battly and Minecraft news. Whenever there's new news, we'll let you know.",
+            text: await window.getString('tour.newsText') || "Here you can see the latest Floppy and Minecraft news. Whenever there's new news, we'll let you know.",
             attachTo: {
                 element: ".home-news",
                 on: "bottom",
@@ -917,7 +917,7 @@ class Home {
 
         tour.addStep({
             title: await window.getString('tour.newsTitle') || "News",
-            text: await window.getString('tour.newsToggleText') || "Here you can toggle between Battly news and Minecraft news.",
+            text: await window.getString('tour.newsToggleText') || "Here you can toggle between Floppy news and Minecraft news.",
             attachTo: {
                 element: "#typeofnewsMain",
                 on: "bottom",
@@ -933,8 +933,8 @@ class Home {
 
 
         tour.addStep({
-            title: await window.getString('tour.battlyStatusTitle') || "Battly Status",
-            text: await window.getString('tour.battlyStatusText') || "Here you can see Battly's status. If there's any problem with Battly, we'll let you know here.",
+            title: await window.getString('tour.battlyStatusTitle') || "Floppy Status",
+            text: await window.getString('tour.battlyStatusText') || "Here you can see Floppy's status. If there's any problem with Floppy, we'll let you know here.",
             attachTo: {
                 element: ".main-home-panel-right",
                 on: "left-start",
@@ -1044,7 +1044,7 @@ class Home {
 
         tour.addStep({
             title: "¡Listo!",
-            text: "De momento, ya has aprendido lo básico de Battly. Cuando vayas descubriendo más cosas de Battly, te iré enseñando a usarlas. ¡Diviértete!",
+            text: "De momento, ya has aprendido lo básico de Floppy. Cuando vayas descubriendo más cosas de Floppy, te iré enseñando a usarlas. ¡Diviértete!",
             buttons: [
                 {
                     text: "¡Gracias!",
@@ -1057,8 +1057,8 @@ class Home {
         if (await getValue("baseTutorialCompleted")) return;
         try {
             await modal.ask({
-                title: "¿Quieres hacer un tour por Battly?",
-                text: "Te guiaré a través de las características principales de Battly.",
+                title: "¿Quieres hacer un tour por Floppy?",
+                text: "Te guiaré a través de las características principales de Floppy.",
                 showCancelButton: true,
                 confirmButtonText: "Sí, quiero hacer el tour",
                 cancelButtonText: "No, gracias",
@@ -1305,7 +1305,7 @@ class Home {
             <section class="modal-card-body" style="background-color: #101726;">
                 <div class="content" style="text-align: center;">
                     <img src="assets/images/rnd/1.png">
-                    <h2 style="color: #fff;">¿Quieres guardar tus mundos de Battly en tu cuenta de Google Drive?
+                    <h2 style="color: #fff;">¿Quieres guardar tus mundos de Floppy en tu cuenta de Google Drive?
                     </h2>
                     <p style="color: #fff;">Si guardas tus mundos en tu cuenta de Google Drive, podrás acceder a ellos
                         desde cualquier
@@ -1328,10 +1328,10 @@ class Home {
               <h2 style="color: #fff;">Espera un momento...
               </h2>
               <p style="color: #fff;">En unos segundos, se abrirá una ventana para iniciar sesión en tu cuenta de
-                Google, simplemente deberás hacerlo y aceptar los permisos de acceso a los archivos a Battly.
+                Google, simplemente deberás hacerlo y aceptar los permisos de acceso a los archivos a Floppy.
                 <br>
                   <br>
-                    Tus datos se guardan localmente y no se almacenan en los servidores de Battly; Battly no
+                    Tus datos se guardan localmente y no se almacenan en los servidores de Floppy; Floppy no
                     accederá a archivos/carpetas que no sean relacionadas a tus mundos.
                   </p>`
                         ;
@@ -1372,7 +1372,7 @@ class Home {
         <div class="modal-card modal-animated" style="border-radius: 15px;">
           <section class="modal-card-body" style="background-color: #101726;">
             <div class="content" style="text-align: center;">
-              <h2 style="color: #fff;">Battly está guardando tus mundos, esto puede tardar...</h2>
+              <h2 style="color: #fff;">Floppy está guardando tus mundos, esto puede tardar...</h2>
               <p style="color: #fff;">Por favor, no cierres la aplicación ni apagues tu dispositivo</p>
               <div class="uploaded-files">
                 <table id="progress-table" style="background-color: #101726;">
@@ -2003,7 +2003,7 @@ class Home {
     async startAutoBackupOnGameClose() {
         try {
             ipcRenderer.send('sync-started');
-            console.log('🔄 Sincronización iniciada - Battly no se cerrará hasta completar');
+            console.log('🔄 Sincronización iniciada - Floppy no se cerrará hasta completar');
 
             const tokens = await getValue("googleTokens");
             if (!tokens) {
@@ -2027,7 +2027,7 @@ class Home {
 
             const drive = google.drive({ version: 'v3', auth });
 
-            this.showSystemNotification('Battly Launcher', 'Iniciando copia de seguridad automática...');
+            this.showSystemNotification('Floppy Launcher', 'Iniciando copia de seguridad automática...');
 
             console.log('📦 Comenzando copia de seguridad automática...');
 
@@ -2098,7 +2098,7 @@ class Home {
             if (wasHidden) {
                 this.showSystemNotification(
                     'Copia de Seguridad Completada',
-                    `${backupData.worlds.length} mundo(s) respaldado(s) • Cerrando Battly...`
+                    `${backupData.worlds.length} mundo(s) respaldado(s) • Cerrando Floppy...`
                 );
             } else {
                 this.showSystemNotification(
@@ -2111,7 +2111,7 @@ class Home {
 
             if (wasHidden) {
                 setTimeout(() => {
-                    console.log('👋 Cerrando Battly tras completar sincronización...');
+                    console.log('👋 Cerrando Floppy tras completar sincronización...');
                     process.exit(0);
                 }, 2000);
             }
@@ -2498,7 +2498,7 @@ class Home {
                 shell.openPath(`${dataDirectory}\\.battly`).then(async () => {
                     new Alert().ShowAlert({
                         icon: "success",
-                        title: await window.getString('home.battlyFolderOpened') || 'Carpeta de Battly abierta',
+                        title: await window.getString('home.battlyFolderOpened') || 'Carpeta de Floppy abierta',
                     });
                 });
             });
@@ -2670,16 +2670,6 @@ class Home {
                 }
             }
         });
-
-        document.getElementById("header-text-to-add").addEventListener("click", () => {
-            const os = require("os");
-            if (os.platform() === "win32") {
-                shell.openExternal("https://battlylauncher.com/premium?utm_source=launcher&utm_medium=header&utm_campaign=premium");
-            } else {
-                window.open("https://battlylauncher.com/premium?utm_source=launcher&utm_medium=header&utm_campaign=premium", "_blank");
-            }
-        });
-
 
         async function LoadMinecraftNews() {
             function compareDates(a, b) {

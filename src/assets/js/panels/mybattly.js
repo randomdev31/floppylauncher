@@ -148,7 +148,7 @@ class MyBattly {
 
         try {
             await modal.ask({
-                title: "¿Quieres un tour por Mi Battly?",
+                title: "¿Quieres un tour por Mi Floppy?",
                 text: "Te guiaré a través de las características principales.",
                 showCancelButton: true,
                 confirmButtonText: "Sí, quiero el tour",
@@ -162,7 +162,7 @@ class MyBattly {
         } catch (err) {
             await setValue("mybattlyTutorialCompleted", true);
             if (err !== "cancelled") {
-                console.error("Error al iniciar el tour de Mi Battly:", err);
+                console.error("Error al iniciar el tour de Mi Floppy:", err);
             }
         }
     }

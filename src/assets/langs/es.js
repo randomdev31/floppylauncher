@@ -3,29 +3,29 @@ const strings = {
   checking_connection: "Comprobando conexión a internet",
   no_connection:
     "No se ha podido conectar a internet.<br>Entrando en modo offline",
-  starting_battly: "Iniciando Battly",
+  starting_battly: "Iniciando Floppy",
   checking_updates: "Comprobando actualizaciones",
   error_checking_updates:
     "Error al buscar las actualizaciones. El servidor no responde. Inténtalo de nuevo más tarde.",
-  error_connecting_server: "Error al conectar al servidor de Battly",
+  error_connecting_server: "Error al conectar al servidor de Floppy",
   getting_actual_version: "Obteniendo versión actual",
   downloading_update: "Descargando actualización",
   update_available: "¡Actualización disponible!",
   update_downloaded: "Actualización descargada",
   update_cancelled: "Actualización cancelada",
   update_completed:
-    "Actualización descargada. Ahora se te abrirá el instalador de Battly",
+    "Actualización descargada. Ahora se te abrirá el instalador de Floppy",
   update_error: "Error al buscar las actualizaciones, error :<br>",
   errkr_connecting_server:
     "Error al conectar al servidor.<br>Comprueba tu conexión o vuelve a intentarlo más tarde.",
   closing_countdown: "Cerrando en",
-  starting_launcher: "Iniciando Battly",
+  starting_launcher: "Iniciando Floppy",
   ending: "Ya casi estamos",
   close: "Cerrar",
 
   instances: "Instancias",
   welcome_instances:
-    "👋 Bienvenido/a al nuevo panel de instancias de Battly. Aquí podrás gestionar las instancias que usarás en Battly para tus versiones.",
+    "👋 Bienvenido/a al nuevo panel de instancias de Floppy. Aquí podrás gestionar las instancias que usarás en Floppy para tus versiones.",
   open_instance: "Abrir",
   open_instance_folder: "Abrir carpeta",
   delete_instance: "Eliminar",
@@ -57,7 +57,7 @@ const strings = {
   checking_assets: "Comprobando assets",
   installing_java: "Instalando Java",
   folder_opened: "Carpeta abierta correctamente",
-  battly_folder_opened: "Carpeta de Battly abierta correctamente",
+  battly_folder_opened: "Carpeta de Floppy abierta correctamente",
 
   are_you_sure: "¿Estás seguro/a?",
   are_you_sure_text: "Esta acción no se puede deshacer.",
@@ -79,8 +79,8 @@ const strings = {
   download: "Descargar",
   play: "Jugar",
 
-  news_battly: "Últimas novedades de Battly",
-  status_battly: "Estado de Battly",
+  news_battly: "Últimas novedades de Floppy",
+  status_battly: "Estado de Floppy",
   playing_now_text: "Reproduciendo ahora",
   playing_now_body: "Nada reproduciéndose",
   users_online: "Usuarios en línea",
@@ -112,7 +112,7 @@ const strings = {
                     <b>Ruta de Java</b>
                     <br>
                     <span>
-                        Battly utiliza una versión integrada de Java [Oficial].<br>`,
+                        Floppy utiliza una versión integrada de Java [Oficial].<br>`,
   java_text_info2: `
                         Esta versión está disponible en la ruta
                         Sin embargo, puedes especificar tu propio ejecutable si tu versión requiere una versión
@@ -132,23 +132,23 @@ const strings = {
   you_have_a_total: "Tienes un total de",
   of_ram: "de RAM",
   of_ram_disponible: "de RAM disponible",
-  battly_settings: "Configuración de Battly",
+  battly_settings: "Configuración de Floppy",
   battly_settings_information: `<span style="font-size: 30px; font-weight: 700;">Inicio de Minecraft</span><br><br>En este apartado
-                    podrás configurar la acción que realizará Battly al abrir Minecraft entre más ajustes generales.<br><br>
+                    podrás configurar la acción que realizará Floppy al abrir Minecraft entre más ajustes generales.<br><br>
                     <b style="font-size: 20px;">Qué hacer al abrir Minecraft:</b>
                     <br>`,
-  minimalize_battly: "Ocultar Battly después de iniciar Minecraft",
+  minimalize_battly: "Ocultar Floppy después de iniciar Minecraft",
   music_settings_information: "Música",
   minimize_music: "Ocultar el panel de música después de iniciar Minecraft",
   keep_music_opened:
     "Mantener el panel de música abierto después de iniciar Minecraft",
-  keep_battly_opened: "Mantener Battly abierto después de iniciar Minecraft",
-  battly_logs_text: "Registros de Battly:",
+  keep_battly_opened: "Mantener Floppy abierto después de iniciar Minecraft",
+  battly_logs_text: "Registros de Floppy:",
   get_socketid: "Obtener ID única",
-  battly_theme: "Personalizar Battly",
+  battly_theme: "Personalizar Floppy",
   welcome: "¡Bienvenido/a!",
   battly_theme_text:
-    "¡Bienvenido/a al nuevo panel de personalización de Battly! Aquí podrás personalizar Battly a tu gusto, cambiando el tema, las imágenes de fondo y mucho más. ¡Esperamos que te guste!",
+    "¡Bienvenido/a al nuevo panel de personalización de Floppy! Aquí podrás personalizar Floppy a tu gusto, cambiando el tema, las imágenes de fondo y mucho más. ¡Esperamos que te guste!",
   change_theme_text: "Ajustar el tema",
   buttons_color: "Color de los botones",
   bottom_bar_text: "Color de la barra inferior",
@@ -173,7 +173,7 @@ const strings = {
   java_path_reset_successfully:
     "La ruta de java se ha restablecido correctamente",
   you_are_premium_background:
-    "Ya que eres premium, ahora podrás elegir si subir una imagen estática o animada para tu fondo de Battly.",
+    "Ya que eres premium, ahora podrás elegir si subir una imagen estática o animada para tu fondo de Floppy.",
   select_a_type_background: "Elige qué fondo quieres establecer",
   uuid_copied_correctly: "Se ha copiado el UUID correctamente",
 
@@ -209,7 +209,7 @@ const strings = {
   downloading_client: "Descargando cliente",
   starting_download_client_can_take:
     "Iniciando instalación del cliente... Puede tardar un poco...",
-  battly_log: "Registro de Battly",
+  battly_log: "Registro de Floppy",
   save_logs: "Guardar registros",
 
   downloading: "Descargando",
@@ -287,7 +287,7 @@ const strings = {
 
   starting_download_can_take:
     "Iniciando instalación... Puede tardar un poco...",
-  battly_log: "Registro de Battly",
+  battly_log: "Registro de Floppy",
   log: "Registro",
 
   start_minecraft_text: "Iniciar Minecraft",
@@ -297,7 +297,7 @@ const strings = {
   /* logs system */
   title_access_logs: "Acceso a tus logs",
   text_access_logs:
-    "Se ha solicitado acceso a tus logs de Battly, ¿Deseas permitirlo?",
+    "Se ha solicitado acceso a tus logs de Floppy, ¿Deseas permitirlo?",
   requester: "Solicitante",
   reason: "Razón",
   text_access_logs_two:
@@ -306,8 +306,8 @@ const strings = {
   deny: "Denegar",
   access_logs_denied: "Se ha denegado el acceso a los logs.",
   access_logs_denied_text:
-    "Si crees que estás siendo atacado, contacta con el equipo de soporte de Battly urgentemente.",
-  your_unique_id_is: "Tu ID única de Battly es:",
+    "Si crees que estás siendo atacado, contacta con el equipo de soporte de Floppy urgentemente.",
+  your_unique_id_is: "Tu ID única de Floppy es:",
   dont_share_it: "Usa esta ID para poder recibir mejor ayuda con tu problema.",
   id_copied_correctly: "Se ha copiado la ID correctamente.",
   copy: "Copiar",
@@ -351,7 +351,7 @@ const strings = {
   deleted_successfully: "eliminado correctamente",
   the_installation_is_in_2nd_plan: "La instalación está en segundo plano",
   the_installation_is_in_2nd_plan_text:
-    "Puedes seguir navegando por Battly mientras se instala el ModPack.",
+    "Puedes seguir navegando por Floppy mientras se instala el ModPack.",
   the_installation_was_cancelled: "La instalación fue cancelada",
   the_installation_was_cancelled_text:
     "Has cancelado la instalación del ModPack.",
@@ -369,7 +369,7 @@ const strings = {
 
   /* battly social */
   welcome_battly_social:
-    "👋 Bienvenido/a al nuevo panel de amigos de Battly. Aquí podrás ver a todos tus amigos, añadirlos, ver qué están jugando y sus estadísticas",
+    "👋 Bienvenido/a al nuevo panel de amigos de Floppy. Aquí podrás ver a todos tus amigos, añadirlos, ver qué están jugando y sus estadísticas",
   friends_list_text: "Lista de amigos",
   add_friend: "Añadir amigo",
   show_requests: "Ver solicitudes",
@@ -404,10 +404,10 @@ const strings = {
   threecharacters_password: "Tu contraseña debe tener al menos 3 carácteres",
   username_or_password_incorrect:
     "El nombre de usuario o la contraseña son incorrectos",
-  welcome_again_to_battly: "Bienvenid@ de nuevo a Battly",
+  welcome_again_to_battly: "Bienvenid@ de nuevo a Floppy",
   we_hope_you_enjoy: "¡Esperamos que disfrutes de la experiencia de juego!",
   use_account_battly_or_microsoft:
-    "Usa tu cuenta de Battly o Microsoft para iniciar sesión en Battly",
+    "Usa tu cuenta de Floppy o Microsoft para iniciar sesión en Floppy",
   username: "Nombre de usuario",
   password: "Contraseña",
   login_text_panel_login: "Iniciar Sesión",
@@ -421,7 +421,7 @@ const strings = {
     "Se ha cerrado sesión de tu cuenta. Debes iniciar sesión de nuevo para continuar.",
   login_microsoft_adv_title: "Iniciar sesión con Microsoft",
   login_microsoft_adv_text:
-    "Hemos recibido muchas quejas por problemas con el inicio de sesión de Microsoft... Pero... Todos es gente que no tiene Minecraft comprado... Si tienes Minecraft comprado, puedes iniciar sesión con Microsoft sin problemas. Si no, inicia sesión con una cuenta de Battly.",
+    "Hemos recibido muchas quejas por problemas con el inicio de sesión de Microsoft... Pero... Todos es gente que no tiene Minecraft comprado... Si tienes Minecraft comprado, puedes iniciar sesión con Microsoft sin problemas. Si no, inicia sesión con una cuenta de Floppy.",
   login_microsoft_accept: "Tengo Minecraft comprado",
   login_microsoft_cancel: "No tengo Minecraft comprado",
   no_accounts: "No tienes cuentas para jugar",
@@ -464,7 +464,7 @@ const strings = {
     "Ya tienes una playlist con este nombre",
   playlist_saved_correctly: "Playlist guardada correctamente",
   welcome_to_the_new_playlists_system:
-    "Bienvenid@ al nuevo panel de playlists de Battly, aquí podrás gestionar tus playlists que habrás guardado en Battly Music.",
+    "Bienvenid@ al nuevo panel de playlists de Floppy, aquí podrás gestionar tus playlists que habrás guardado en Floppy Music.",
   getting_songs: "Obteniendo canciones",
   getting: "Obteniendo",
   loading: "Cargando",
@@ -491,33 +491,33 @@ const strings = {
 
   mods: "Mods",
   welcome_mods:
-    "👋 Bienvenido/a al nuevo panel de mods de Battly. Aquí podrás gestionar tus mods descargados en Battly.",
+    "👋 Bienvenido/a al nuevo panel de mods de Floppy. Aquí podrás gestionar tus mods descargados en Floppy.",
 
   premium_screen_1:
-    "Si estás leyendo esto es porque eres usuario Plus (premium) de Battly (o habrás usado truquitos para ver este mensaje). <b>Ahora podrás disfrutar de todas tus ventajas en Battly como:</b>",
-  premium_screen_2: "Fondo animado en Battly",
+    "Si estás leyendo esto es porque eres usuario Plus (premium) de Floppy (o habrás usado truquitos para ver este mensaje). <b>Ahora podrás disfrutar de todas tus ventajas en Floppy como:</b>",
+  premium_screen_2: "Fondo animado en Floppy",
   premium_screen_3:
     "Exactamente, normalmente podías añadir una imagen de fondo, pero al ser premium <b>podrás añadir un fondo animado (un vídeo que se repite).</b>",
   premium_screen_4: "Skins HD + Capas Custom",
   premium_screen_5:
-    "Normalmente, siendo usuario normal, sólo podías subir tu skin y elegir entre las 4 capas que te da Battly, pero ahora <b>podrás añadir una skin HD y tu propia capa.</b>",
-  premium_screen_6: "Insignia única en Battly",
+    "Normalmente, siendo usuario normal, sólo podías subir tu skin y elegir entre las 4 capas que te da Floppy, pero ahora <b>podrás añadir una skin HD y tu propia capa.</b>",
+  premium_screen_6: "Insignia única en Floppy",
   premium_screen_7:
     'Cuando acabes de leer esto, mira tu perfil, habrá aparecido un <i class="fa-solid fa-fire"></i>, <b>eso significa que eres premium.</b>',
   premium_screen_8: "Rol en el servidor de Discord",
   premium_screen_9:
-    "Si eres premium, tendrás un rol especial en el servidor de Discord de Battly.",
+    "Si eres premium, tendrás un rol especial en el servidor de Discord de Floppy.",
   premium_screen_10: "Soporte priotirario",
   premium_screen_11:
-    "Al ser premium, tendrás soporte prioritario para solucionar tus problemas de Battly con nuestros mejores staffs.",
+    "Al ser premium, tendrás soporte prioritario para solucionar tus problemas de Floppy con nuestros mejores staffs.",
   premium_screen_12:
-    "Battly, siempre se está actualizando, por lo cual, con el tiempo, iremos añadiendo más ventajas para vosotros. ¡Gracias por formar parte de Battly!",
+    "Floppy, siempre se está actualizando, por lo cual, con el tiempo, iremos añadiendo más ventajas para vosotros. ¡Gracias por formar parte de Floppy!",
 
   /* crash report */
   notification_crash_report_title: "Error al abrir Minecraft",
-  notification_crash_report_text: "Consulta el error abriendo Battly",
+  notification_crash_report_text: "Consulta el error abriendo Floppy",
   thats_a_error_message:
-    "Esto es un mensaje de error al iniciar Minecraft. Esto no es por culpa de Battly, no reportar este problema.",
+    "Esto es un mensaje de error al iniciar Minecraft. Esto no es por culpa de Floppy, no reportar este problema.",
   error_found: "Error encontrado",
   find_solution: "Encontrar solución",
   save_logs: "Guardar logs",
@@ -532,11 +532,11 @@ const strings = {
   solution_found: "¡Se ha encontrado una solución!",
 
   /* tooltips */
-  tooltip_settings: "Ajusta las configuraciones de Battly a tu gusto",
+  tooltip_settings: "Ajusta las configuraciones de Floppy a tu gusto",
   tooltip_news: "Mira las últimas actualizaciones",
-  tooltip_folder: "Abre la carpeta de Battly",
+  tooltip_folder: "Abre la carpeta de Floppy",
   tooltip_discord: "Únete al servidor de Discord",
-  tooltip_mods: "Descarga tus mods favoritos desde Battly",
+  tooltip_mods: "Descarga tus mods favoritos desde Floppy",
   tooltip_music: "Escucha tu música favorita cuando quieras",
   tooltip_friends: "Mira que están jugando tus amigos para unirte a ellos",
   tooptip_instances: "Separa tus mods y juega tus modpacks favoritos",
@@ -544,12 +544,12 @@ const strings = {
   tooltip_play: "Juega las versiones descargadas",
 
   /* tooltips settings */
-  tooltip_accounts: "Gestiona tus cuentas de Battly",
+  tooltip_accounts: "Gestiona tus cuentas de Floppy",
   tooltip_java: "Configura Java",
   tooltip_ram: "Ajusta la RAM de Minecraft",
-  tooltip_launcher: "Ajusta el comportamiento de Battly",
-  tooltip_theme: "Personaliza los colores de Battly",
-  tooltip_background: "Ajusta el fondo de Battly a tu gusto",
+  tooltip_launcher: "Ajusta el comportamiento de Floppy",
+  tooltip_theme: "Personaliza los colores de Floppy",
+  tooltip_background: "Ajusta el fondo de Floppy a tu gusto",
   tooltip_save: "Guarda las configuraciones y vuelve al menú",
 };
 

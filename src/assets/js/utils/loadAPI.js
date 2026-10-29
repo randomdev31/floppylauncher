@@ -194,7 +194,7 @@ class LoadAPI {
             loading_minecraft_versions: "Loading Minecraft versions...",
             minecraft_versions_loaded: "Minecraft versions loaded.",
             error_loading_minecraft_versions: "Error loading Minecraft versions.",
-            starting_battly: "Starting Battly...",
+            starting_battly: "Starting Floppy...",
         };
         return fallbacks[key] || key;
     }
@@ -293,7 +293,7 @@ class LoadAPI {
             applyUI: false,
         });
         const startingText = await this.getString("starting_battly");
-        setTimeout(() => setLoadingText(startingText || "Starting Battly..."), 2000);
+        setTimeout(() => setLoadingText(startingText || "Starting Floppy..."), 2000);
         return data;
     }
 }

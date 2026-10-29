@@ -76,7 +76,7 @@ async function changePanel(id) {
 
 }
 
-async function addAccount(data, isPremium, isOffline) {
+async function addAccount(data, isOffline) {
     document.querySelector(".preload-content").style.display = "block";
 
     const div = document.createElement("div");
@@ -91,7 +91,6 @@ async function addAccount(data, isPremium, isOffline) {
             <div class="account-image mc-face-viewer-8x" data-offline="${isOffline}"></div>
             <div class="account-name" id="user-name">
                 ${data.name}
-                ${isPremium ? '<i class="fa-solid fa-fire" style="cursor:pointer;margin-left:5px;"></i>' : ''}
                 ${isOffline ? '<i class="fa-solid fa-cube" style="cursor:pointer;margin-left:5px;"></i>' : ''}
             </div>
         </div>
@@ -107,7 +106,6 @@ async function addAccount(data, isPremium, isOffline) {
 
     div.addEventListener('click', async (e) => {
         if (
-            e.target.closest('i.fa-fire') ||
             e.target.closest('i.fa-cube') ||
             e.target.closest('.b-settings-menu-trigger')
         ) {
@@ -164,7 +162,7 @@ async function accountSelect(uuid, reload = false) {
     if (reload) {
         new Alert().ShowAlert({
             icon: 'success',
-            title: "Aplicando cambios. Battly se reiniciará en unos segundos...",
+            title: "Aplicando cambios. Floppy se reiniciará en unos segundos...",
         });
         setTimeout(() => {
             ipcRenderer.send('reload-app');
@@ -181,115 +179,9 @@ async function accountSelect(uuid, reload = false) {
         });
     }
 
-    const hasPremiumIcon = !!account.querySelector('.account-name i.fa-fire');
-
-    const ads = document.getElementById("ads");
     const headerText = document.getElementById("header-text-to-add");
-    const headerFrame = document.getElementById("header-frame");
+    if (headerText) headerText.textContent = "";
 
-    if (hasPremiumIcon) {
-        if (ads) ads.style.display = "none";
-        if (headerText) headerText.innerHTML = "Premium Edition";
-        if (headerFrame) headerFrame.style.background = 'linear-gradient(45deg, #C9A635, #B8860B, #A1752D, #8B6914, #70590E)';
-
-        let WelcomePremiumShown = await getValue('WelcomePremiumShown');
-        if (!WelcomePremiumShown || WelcomePremiumShown === 'false') {
-            const modal = document.createElement('div');
-            modal.classList.add('modal', 'is-active');
-
-            const modalBackground = document.createElement('div');
-            modalBackground.classList.add('modal-background');
-
-            const modalCard = document.createElement('div');
-            modalCard.classList.add('modal-card', 'modal-animated');
-            modalCard.style.backgroundColor = '#0f1623';
-            modalCard.style.height = '90%';
-
-            const modalHeader = document.createElement('header');
-            modalHeader.classList.add('modal-card-head');
-            modalHeader.style.backgroundColor = '#0f1623';
-
-            const modalTitle = document.createElement('h1');
-            modalTitle.classList.add('modal-card-title');
-            modalTitle.textContent = "¡Felicidades!";
-            modalTitle.style.color = '#fff';
-            modalTitle.style.fontSize = '30px';
-            modalTitle.style.fontWeight = '600';
-
-            const closeButton = document.createElement('button');
-            closeButton.classList.add('delete');
-            closeButton.setAttribute('aria-label', 'close');
-
-            closeButton.addEventListener('click', async () => {
-                modal.classList.remove('is-active');
-                await setValue('WelcomePremiumShown', true);
-            });
-
-            const modalBody = document.createElement('section');
-            modalBody.classList.add('modal-card-body');
-            modalBody.style.backgroundColor = '#0f1623';
-
-            const content = document.createElement('div');
-            content.classList.add('content');
-            content.style.color = '#fff';
-            content.style.backgroundColor = '#0f1623';
-
-            const texts = [
-                window.stringLoader?.getString("common.premium_screen_1") || "",
-                window.stringLoader?.getString("common.premium_screen_2") || "",
-                window.stringLoader?.getString("common.premium_screen_3") || "",
-                window.stringLoader?.getString("common.premium_screen_4") || "",
-                window.stringLoader?.getString("common.premium_screen_5") || "",
-                window.stringLoader?.getString("common.premium_screen_6") || "",
-                window.stringLoader?.getString("common.premium_screen_7") || "",
-                window.stringLoader?.getString("common.premium_screen_8") || "",
-                window.stringLoader?.getString("common.premium_screen_9") || "",
-                window.stringLoader?.getString("common.premium_screen_10") || "",
-                window.stringLoader?.getString("common.premium_screen_11") || "",
-                window.stringLoader?.getString("common.premium_screen_12") || "",
-            ].filter(Boolean);
-
-            for (let i = 0; i < texts.length; i++) {
-                if (i === 1 || i === 3 || i === 5 || i === 7 || i === 9) {
-                    const h2 = document.createElement('h2');
-                    h2.innerHTML = texts[i];
-                    content.appendChild(h2);
-                } else {
-                    const p = document.createElement('p');
-                    p.innerHTML = texts[i];
-                    content.appendChild(p);
-                }
-            }
-
-            const modalFooter = document.createElement('footer');
-            modalFooter.classList.add('modal-card-foot');
-            modalFooter.style.backgroundColor = '#0f1623';
-
-            const acceptButton = document.createElement('button');
-            acceptButton.classList.add('button', 'is-info');
-            acceptButton.textContent = 'Aceptar';
-
-            acceptButton.addEventListener('click', async () => {
-                modal.classList.remove('is-active');
-                await setValue('WelcomePremiumShown', true);
-            });
-
-            modalHeader.appendChild(modalTitle);
-            modalHeader.appendChild(closeButton);
-            modalBody.appendChild(content);
-            modalFooter.appendChild(acceptButton);
-            modalCard.appendChild(modalHeader);
-            modalCard.appendChild(modalBody);
-            modalCard.appendChild(modalFooter);
-            modal.appendChild(modalBackground);
-            modal.appendChild(modalCard);
-            document.body.appendChild(modal);
-        }
-    } else {
-        if (headerText) headerText.innerHTML = "Free Edition";
-        if (headerFrame) headerFrame.style.background = `#0f1623`;
-        if (ads) ads.style.display = "";
-    }
 }
 
 async function headplayer(id, pseudo, isOffline) {

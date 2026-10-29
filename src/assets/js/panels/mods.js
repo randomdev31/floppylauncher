@@ -2825,7 +2825,7 @@ class Mods {
     async ObtenerVersionPorId(versionId) {
         try {
             const r = await fetch(`https://api.modrinth.com/v2/version/${versionId}`, {
-                headers: { 'User-Agent': 'BattlyLauncher/1.0' }
+                headers: { 'User-Agent': 'FloppyLauncher/1.0' }
             });
             if (!r.ok) throw new Error(`HTTP ${r.status}`);
             return await r.json();
@@ -2853,7 +2853,7 @@ class Mods {
         await fs.promises.mkdir(modsDir, { recursive: true });
 
         const fetchJson = async (url) => {
-            const r = await fetch(url, { headers: { 'User-Agent': 'BattlyLauncher/1.0' } });
+            const r = await fetch(url, { headers: { 'User-Agent': 'FloppyLauncher/1.0' } });
             if (!r.ok) throw new Error(`HTTP ${r.status} @ ${url}`);
             return r.json();
         };
