@@ -15,7 +15,8 @@ function themeData(input = {}) {
         footerColor: color(input.footerColor, '#0a0a0a'),
         loadingColor: color(input.loadingColor, '#000000'),
         footerOpacity: Math.min(1, Math.max(0, Number(input.footerOpacity) || 0)),
-        startupSound: /^[\w-]+$/.test(input.startupSound) ? input.startupSound : 'start',
+        startupSound: typeof input.startupSound === 'string' && /^[\w-]+$/.test(input.startupSound)
+            ? input.startupSound : 'start',
         background,
         backgroundVideo: typeof input.backgroundVideo === 'string' ? input.backgroundVideo : null,
         animated: Boolean(input.animated),
@@ -24,7 +25,13 @@ function themeData(input = {}) {
 
 async function themes() {
     const saved = await getValue(THEME_KEY);
-    if (Array.isArray(saved) && saved.length) return saved;
+    if (Array.isArray(saved) && saved.length) {
+        const normalized = saved.map(theme => ({ ...theme, ...themeData(theme) }));
+        if (JSON.stringify(normalized) !== JSON.stringify(saved)) {
+            await setValue(THEME_KEY, normalized);
+        }
+        return normalized;
+    }
     // Preserve the active customization when upgrading from cloud themes.
     const initial = {
         _id: randomUUID(), owner: 'local',

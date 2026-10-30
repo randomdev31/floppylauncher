@@ -97,17 +97,14 @@ function setLoadingText(keyOrText) {
 }
 async function applyChristmasUI(config, { startup }) {
     if (!config || typeof document === "undefined") return;
-    const snow = getEl("christmas-snowflakes");
     const up = getEl("rectangulo-arriba");
     const down = getEl("rectangulo-abajo");
     if (!config.christmasTheme?.enabled) {
-        if (!startup && snow) snow.style.display = "none";
         return;
     }
     if (!startup) {
         if (up) up.src = "assets/images/icons/pengu_christmas.gif";
         if (down) down.src = "assets/images/icons/pengu_christmas.gif";
-        if (snow) snow.style.display = "";
     }
 
     let currentAudio = null;

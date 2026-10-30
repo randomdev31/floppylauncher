@@ -14,7 +14,7 @@ Floppy Launcher es un launcher de Minecraft diseñado para ofrecer una experienc
 * **Filosofía KISS**: El principal objetivo es mantener el launcher SIMPLE sin incluir funciones innecesarias.
 * **Opciones de rendimiento** para ajustar parámetros como RAM, optimización y ajustes del sistema.
 * **Multiplataforma**: Disponible para **Windows**, **macOS** y todas las distribuciones Linux (Debian, Ubuntu, Arch, etc.) y soporte experimental para FreeBSD.
-* **Sistema REALMENTE seguro**, sin trackers ocultos ni recopilación invasiva de datos.
+* **Sistema REALMENTE seguro**, sin trackers ocultos, telemetria oculta ni recopilación invasiva de datos.
 * **Completamente Gratuito**: No hay ninguna barrera de pago que te prohiba hacer cosas que necesitas.
 ## 💡 Sugerencias y Feedback
 
@@ -35,6 +35,14 @@ El proyecto original es Battly. Su web de descargas es:
 El projecto fork es Floppy, la pagina de descargas esta en GitHub:
 
 👉 [https://github.com/randomdev31/floppylauncher](https://github.com/randomdev31/floppylauncher)
+
+## Donar
+
+Aunque realmente es opcional, podrias ayudarme economicamente a mantener este projecto con tu donación :D
+
+👉 Bitcoin: bc1qt8hqsv0alu95drvkhauq035ap6uwhna64k7rv39rpzky0kh6yqls03004z
+
+Aunque es totalmente opcional, te dare creditos personalmente en una sección en el launcher mismo y abajo 
 
 ## Creditos
 

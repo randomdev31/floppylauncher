@@ -15,7 +15,10 @@ function loadStore(state = {}) {
             assert.equal(id, './storage');
             return {
                 getValue: async key => clone(state[key]),
-                setValue: async (key, value) => { state[key] = clone(value); },
+                setValue: async (key, value) => {
+                    assert.notEqual(value, undefined, `Cannot store undefined for ${key}`);
+                    state[key] = clone(value);
+                },
             };
         },
     });
@@ -104,4 +107,47 @@ test('launcher source no longer queries subscription status or displays purchase
         assert.doesNotMatch(source, /isPremium|\.premium\b|obtenerUsuariosPremium|WelcomePremiumShown|battlylauncher\.com\/premium|Battly\+/i);
     }
     assert.doesNotMatch(fs.readFileSync(path.join(root, 'src/panels/home.html'), 'utf8'), /<iframe[^>]*\bads\//);
+});
+
+test('theme startup applies both new and previously saved themes without a configured sound', async () => {
+    const { JSDOM } = require('jsdom');
+    const source = fs.readFileSync(path.join(root, 'src/assets/js/panels/settings.js'), 'utf8');
+    const classSource = source.slice(source.indexOf('class Settings {'), source.indexOf('export default Settings;'));
+    for (const state of [{}, { localThemes: [{ _id: 'existing', name: 'Mi tema', btnColor: '#123456' }] }]) {
+        // jsdom does not support all Chromium CSS; retain the real panel markup.
+        const html = fs.readFileSync(path.join(root, 'src/panels/settings.html'), 'utf8')
+            .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, '');
+        const dom = new JSDOM(html, {
+            url: 'https://launcher.local/',
+        });
+        try {
+            const alerts = [];
+            const errors = [];
+            const clone = value => value === undefined ? undefined : JSON.parse(JSON.stringify(value));
+            const context = {
+                module: { exports: {} },
+                document: dom.window.document, window: dom.window, localStorage: dom.window.localStorage,
+                tinycolor: require('tinycolor2'),
+                getValue: async key => clone(state[key]),
+                setValue: async (key, value) => {
+                    assert.notEqual(value, undefined, `Cannot store undefined for ${key}`);
+                    state[key] = clone(value);
+                },
+                require: () => loadStore(state),
+                setTimeout() {},
+                ipcRenderer: { on() {} },
+                console: { error: error => errors.push(String(error)) },
+                ModalAsk: { ask: alert => alerts.push(alert) },
+            };
+            dom.window.getString = key => key;
+            vm.runInNewContext(classSource + '\nmodule.exports = Settings;', context);
+            await new context.module.exports().newTheme();
+            assert.equal(alerts.length, 0, errors.join('\n'));
+            assert.equal(state['sonido-inicio'], 'start');
+            assert.equal(dom.window.document.querySelectorAll('.theme-card').length, 1);
+            assert.ok(dom.window.localStorage.getItem('activeThemeCloud_v1'));
+        } finally {
+            dom.window.close();
+        }
+    }
 });
